@@ -1,0 +1,2634 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script async src="//cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  <link href="//cdn.jsdelivr.net/npm/pace-js@1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "7e63d6bc"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+<link href="https://fonts.loli.net/css?family=EB+Garamond:400,400i,700,700i|Noto+Serif+SC:400,500,700&display=swap&subset=chinese-simplified" rel="stylesheet">
+
+
+
+
+  
+
+<link href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="大数据技术学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Hadoop核心HDFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop核心HDFS">
+<meta property="og:url" content="https://studentliuchang.gitee.io/Hadoop-HDFS/index.html">
+<meta property="og:site_name" content="热爱生活">
+<meta property="og:description" content="Hadoop核心HDFS">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210124223611303.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0OTc4Mzc4,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://s2.51cto.com/wyfs02/M00/8E/49/wKioL1i8F0nBUcWjAADLVfbN--4422.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123233011.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123233011.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123233011.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123160944.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123160944.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123161710.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123161648.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123161919.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123162133.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123162206.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123162553.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123162902.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123163826.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123164211.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123164158.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123165243.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123165323.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123165633.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123170119.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123171130.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123171142.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123194445.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123194704.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123195020.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123195141.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123200008.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124153324.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123201223.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123201157.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123201644.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124153618.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124153618.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124153453.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124153541.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123210322.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123210318.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123210325.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123230136.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123231308.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123231457.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123231752.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123232024.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123210331.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124142844.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124155053.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124155433.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124163036.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124163342.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124163623.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124163720.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124164953.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124165711.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124170139.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124170931.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124172517.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124222946.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124222927.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210125000544.png">
+<meta property="article:published_time" content="2021-01-26T11:10:48.000Z">
+<meta property="article:modified_time" content="2021-01-29T14:33:30.515Z">
+<meta property="article:author" content="Student-Chang">
+<meta property="article:tag" content="大数据技术学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210124223611303.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0OTc4Mzc4,size_16,color_FFFFFF,t_70">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"flipYIn","post_header":"perspectiveRightIn","post_body":"perspectiveLeftIn","coll_header":"swoopIn","sidebar":"shrinkIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://studentliuchang.gitee.io/Hadoop-HDFS/"/>
+
+
+
+
+
+<!-- 设置文章需要密码访问 -->
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title>Hadoop核心HDFS | 热爱生活</title>
+  
+
+
+
+
+
+
+
+
+
+  
+      <!-- 球型气泡标签云 -->
+      <script type="text/javascript" src="/js/src/bubble.js"></script>
+  
+
+  
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <!--fork me from github-->
+    <a target="_blank" rel="noopener" href="https://student-chang.github.io/" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">热爱生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/life/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-apple"></i> <br />
+            
+            生活
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            友链
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://studentliuchang.gitee.io/Hadoop-HDFS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/OIP.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="热爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Hadoop核心HDFS</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+             
+                 <i class="fa fa-thumb-tack"></i>
+                 <font color=7D26CD>置顶</font>
+                 <span class="post-meta-divider">|</span>
+             
+
+             
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-26T19:10:48+08:00">
+                2021-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AEHadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Hadoop-HDFS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Hadoop-HDFS/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Hadoop-HDFS/" class="leancloud_visitors" data-flag-title="Hadoop核心HDFS">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          <!--
+          
+          -->
+
+          
+            <span class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </span>
+          
+
+          <!-- 隐藏文章内标题下，内容描述
+          
+          -->
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Hadoop核心HDFS"><a href="#Hadoop核心HDFS" class="headerlink" title="Hadoop核心HDFS"></a><font color="#f15b6c"><em>Hadoop核心HDFS</em></font></h1><p><img src="https://img-blog.csdnimg.cn/20210124223611303.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0OTc4Mzc4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<a id="more"></a>
+
+<h2 id="1-HDFS概述"><a href="#1-HDFS概述" class="headerlink" title="1. HDFS概述"></a>1. HDFS概述</h2><h3 id="1-1-介绍"><a href="#1-1-介绍" class="headerlink" title="1.1 介绍"></a>1.1 介绍</h3><p>  在现代的企业环境中，单机容量往往无法存储大量数据，需要跨机器存储。统一管理分布在集群上的文件系统称为<a href="">分布式文件系统</a> 。</p>
+<p>​     <a href="">HDFS</a>（Hadoop  Distributed  File  System）是 Apache Hadoop 项目的一个子项目. Hadoop 非常适于存储大型数据 (比如 TB 和 PB), 其就是使用 HDFS 作为存储系统. HDFS 使用多台计算机存储文件, 并且提供统一的访问接口, 像是访问一个普通文件系统一样使用分布式文件系统. </p>
+<p><img src="https://s2.51cto.com/wyfs02/M00/8E/49/wKioL1i8F0nBUcWjAADLVfbN--4422.png" alt="HDFS and Mapreduce"> </p>
+<h3 id="1-2-历史"><a href="#1-2-历史" class="headerlink" title="1.2 历史"></a>1.2 历史</h3><ol>
+<li><a href="">Doug Cutting</a> 在做 Lucene 的时候, 需要编写一个爬虫服务, 这个爬虫写的并不顺利, 遇到了一些问题, 诸如: 如何存储大规模的数据, 如何保证集群的可伸缩性, 如何动态容错等</li>
+<li>2013年的时候, Google 发布了三篇论文, 被称作为三驾马车, 其中有一篇叫做 GFS, 是描述了 Google 内部的一个叫做 <a href="">GFS</a> 的分布式大规模文件系统, 具有强大的可伸缩性和容错性</li>
+<li>Doug Cutting 后来根据 GFS 的论文, 创造了一个新的文件系统, 叫做 HDFS</li>
+</ol>
+<h2 id="2-HDFS应用场景"><a href="#2-HDFS应用场景" class="headerlink" title="2. HDFS应用场景"></a>2. HDFS应用场景</h2><h3 id="2-1-适合的应用场景"><a href="#2-1-适合的应用场景" class="headerlink" title="2.1 适合的应用场景"></a>2.1 适合的应用场景</h3><ul>
+<li>存储非常大的文件：这里非常大指的是几百M、G、或者TB级别，需要<a href="">高吞吐量</a>，对<a href="">延时没有要求</a>。</li>
+<li>采用流式的数据访问方式: 即<a href="">一次写入、多次读取</a>，数据集经常从数据源生成或者拷贝一次，然后在其上做很多分析工作 。</li>
+<li>运行于商业硬件上: Hadoop不需要特别贵的机器，可运行于普通廉价机器，可以处<a href="">节约成本</a></li>
+<li>需要高<a href="">容错性</a> </li>
+</ul>
+<ul>
+<li>为数据存储提供所需的<a href="">扩展能力</a></li>
+</ul>
+<h3 id="2-2-不适合的应用场景"><a href="#2-2-不适合的应用场景" class="headerlink" title="2.2 不适合的应用场景"></a>2.2 不适合的应用场景</h3><p>1） 低延时的数据访问<br>  对延时要求在毫秒级别的应用，不适合采用HDFS。HDFS是为高吞吐数据传输设计的,因此可能<a href="">牺牲延时</a></p>
+<p>2）大量小文件<br>文件的元数据保存在<a href="">NameNode的内存中</a>， 整个文件系统的文件数量会受限于NameNode的内存大小。<br>经验而言，一个文件/目录/文件块一般占有150字节的元数据内存空间。如果有100万个文件，每个文件占用1个文件块，则需要大约300M的内存。因此十亿级别的文件数量在现有商用机器上难以支持。</p>
+<p>3）多方读写，需要任意的文件修改<br>HDFS采用追加（append-only）的方式写入数据。<a href="">不支持文件任意offset的修改</a>。不支持多个写入器（writer）</p>
+<h2 id="3-HDFS-的架构"><a href="#3-HDFS-的架构" class="headerlink" title="3. HDFS 的架构"></a>3. HDFS 的架构</h2><p> HDFS是一个<code>主/从（Mater/Slave）体系结构</code>，</p>
+<p>HDFS由四部分组成，<a href="">HDFS Client</a>、<a href="">NameNod</a><a href="">e</a>、<a href="">DataNode</a>和<a href="">Secondary NameNode</a>。</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123233011.png" alt="1561706903642">        </p>
+<p> 　 <strong>1、Client：就是客户端。</strong></p>
+<ul>
+<li>文件切分。文件上传 HDFS 的时候，Client 将文件切分成 一个一个的Block，然后进行存储。</li>
+<li>与 NameNode 交互，获取文件的位置信息。</li>
+<li>与 DataNode 交互，读取或者写入数据。</li>
+<li>Client 提供一些命令来管理 和访问HDFS，比如启动或者关闭HDFS。</li>
+</ul>
+<p>　　<strong>2、NameNode：就是 master，它是一个主管、管理者。</strong></p>
+<ul>
+<li>管理 HDFS 的名称空间</li>
+<li>管理数据块（Block）映射信息</li>
+<li>配置副本策略</li>
+<li>处理客户端读写请求。</li>
+</ul>
+<p>　　<strong>3、DataNode：就是Slave。NameNode 下达命令，DataNode 执行实际的操作。</strong></p>
+<ul>
+<li>存储实际的数据块。</li>
+<li>执行数据块的读/写操作。</li>
+</ul>
+<p>　　<strong>4、Secondary NameNode：并非 NameNode 的热备。当NameNode 挂掉的时候，它并不能马上替换 NameNode 并提供服务。</strong></p>
+<ul>
+<li>辅助 NameNode，分担其工作量。</li>
+<li>定期合并 fsimage和fsedits，并推送给NameNode。</li>
+<li>在紧急情况下，可辅助恢复 NameNode。</li>
+</ul>
+<h2 id="4-NameNode和DataNode"><a href="#4-NameNode和DataNode" class="headerlink" title="4:NameNode和DataNode"></a>4:NameNode和DataNode</h2><p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123233011.png" alt="1561706945153">    </p>
+<h3 id="4-1-NameNode作用"><a href="#4-1-NameNode作用" class="headerlink" title="4.1 NameNode作用"></a>4.1 NameNode作用</h3><ul>
+<li><p>NameNode在内存中保存着整个文件系统的<a href="">名称</a><a href="">空间</a>和文件数据块的<a href="">地址映射</a></p>
+</li>
+<li><p>整个HDFS可存储的文件数受限于<a href="">NameNode的内存大小</a> </p>
+<p><code>1、NameNode元数据信息</code><br>文件名，文件目录结构，文件属性(生成时间，副本数，权限)每个文件的块列表。<br>以及列表中的块与块所在的DataNode之间的地址映射关系<br>在内存中加载文件系统中每个文件和每个数据块的引用关系(文件、block、datanode之间的映射信息)<br>数据会定期保存到本地磁盘（fsImage文件和edits文件）</p>
+</li>
+</ul>
+<p><code>2、NameNode文件操作</code><br>NameNode负责文件元数据的操作<br>DataNode负责处理文件内容的读写请求，数据流不经过NameNode，会询问它跟那个DataNode联系</p>
+<p><code>3、NameNode副本</code><br>文件数据块到底存放到哪些DataNode上，是由NameNode决定的，NN根据全局情况做出放置副本的决定 </p>
+<p><code>4、NameNode心跳机制</code><br>全权管理数据块的复制，周期性的接受心跳和块的状态报告信息（包含该DataNode上所有数据块的列表）<br>若接受到心跳信息，NameNode认为DataNode工作正常，如果在10分钟后还接受到不到DN的心跳，那么NameNode认为DataNode已经宕机 ,这时候NN准备要把DN上的数据块进行重新的复制。 块的状态报告包含了一个DN上所有数据块的列表，blocks report 每个1小时发送一次.</p>
+<h3 id="4-2-DataNode作用"><a href="#4-2-DataNode作用" class="headerlink" title="4.2 DataNode作用"></a>4.2 DataNode作用</h3><p>提供真实文件数据的存储服务。 </p>
+<p> 1、Data Node以数据块的形式存储HDFS文件</p>
+<p>2、Data Node 响应HDFS 客户端读写请求</p>
+<p>3、Data Node 周期性向NameNode汇报心跳信息</p>
+<p>4、Data Node 周期性向NameNode汇报数据块信息</p>
+<p>5、Data Node 周期性向NameNode汇报缓存数据块信息</p>
+<h2 id="5-HDFS的副本机制和机架感知"><a href="#5-HDFS的副本机制和机架感知" class="headerlink" title="5:HDFS的副本机制和机架感知"></a>5:HDFS的副本机制和机架感知</h2><h3 id="5-1-HDFS-文件副本机制"><a href="#5-1-HDFS-文件副本机制" class="headerlink" title="5.1 HDFS 文件副本机制"></a>5.1 HDFS 文件副本机制</h3><p>所有的文件都是以 block 块的方式存放在 HDFS 文件系统当中,作用如下</p>
+<ol>
+<li>一个文件有可能大于集群中任意一个磁盘，引入块机制,可以很好的解决这个问题</li>
+<li>使用块作为文件存储的逻辑单位可以简化存储子系统</li>
+<li>块非常适合用于数据备份进而提供数据容错能力</li>
+</ol>
+<p>在 Hadoop1 当中, 文件的 block 块默认大小是 64M, hadoop2 当中, 文件的 block 块大小默认是 128M, block 块的大小可以通过 hdfs-site.xml 当中的配置文件进行指定</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.block.size<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>块大小 以字节为单位<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123233011.png" alt="1561706988677">    </p>
+<h3 id="5-2-机架感知"><a href="#5-2-机架感知" class="headerlink" title="5.2 机架感知"></a>5.2 机架感知</h3><p>HDFS分布式文件系统的内部有一个副本存放策略：以默认的副本数=3为例：</p>
+<p>1、第一个副本块存本机</p>
+<p>2、第二个副本块存跟本机同机架内的其他服务器节点</p>
+<p>3、第三个副本块存不同机架的一个服务器节点上</p>
+<h2 id="6、hdfs的命令行使用"><a href="#6、hdfs的命令行使用" class="headerlink" title="6、hdfs的命令行使用"></a>6、hdfs的命令行使用</h2><p><code>ls</code> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">格式：  hdfs dfs -ls  URI</span><br><span class="line">作用：类似于Linux的ls命令，显示文件列表</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs  dfs   -ls  /</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123160944.png" alt="image-20210123160924348"></p>
+<p><code>lsr</code>  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">格式  : hdfs  dfs -lsr URI</span><br><span class="line">作用  : 在整个目录下递归执行ls, 与UNIX中的ls-R类似,lsr现在已经过时，现在使用-ls -R命令</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs  dfs   -ls —R  /</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123160944.png" alt="image-20210123160944074"></p>
+<p><code>mkdir</code> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">格式 ： hdfs  dfs [-p] -mkdir &lt;paths&gt;</span><br><span class="line">作用 :   以&lt;paths&gt;中的URI作为参数，创建目录。使用-p参数可以递归创建目录</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123161710.png" alt="image-20210123161710366"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123161648.png" alt="image-20210123161647827"></p>
+<p><code>put</code>  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">格式   ： hdfs dfs -put &lt;localsrc &gt;  ... &lt;dst&gt;</span><br><span class="line">作用 ：  将单个的源文件src或者多个源文件srcs从本地文件系统拷贝到目标文件系统中（&lt;dst&gt;对应的路径）。也可以从标准输入中读取输入，写入目标文件系统中</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -put  /rooot/a.txt  /dir1</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123161919.png" alt="image-20210123161919212"></p>
+<p><code>moveFromLocal</code>  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">格式： hdfs  dfs -moveFromLocal  &lt;localsrc&gt;   &lt;dst&gt;</span><br><span class="line">作用:   和put命令类似，但是源文件localsrc拷贝之后自身被删除，相当于剪切</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs  dfs -moveFromLocal  /root/install.log  /</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123162133.png" alt="image-20210123162133022"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123162206.png" alt="image-20210123162206045"></p>
+<p><code>get</code> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">格式   hdfs dfs  -get [-ignorecrc ]  [-crc]  &lt;src&gt; &lt;localdst&gt;</span><br><span class="line">-ignorecrc：忽略crc校验</span><br><span class="line">-crc：使用crc校验</span><br><span class="line">作用：将文件拷贝到本地文件系统。 CRC 校验失败的文件通过-ignorecrc选项拷贝。 文件和CRC校验和可以通过-CRC选项拷贝</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123162553.png" alt="image-20210123162553102"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123162902.png" alt="image-20210123162902791"></p>
+<p><code>mv</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">格式  ： hdfs  dfs -mv URI   &lt;dest&gt;</span><br><span class="line">作用： 将hdfs上的文件从原路径移动到目标路径（移动之后文件删除），该命令不能夸文件系统</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs  dfs  -mv  /dir1/a.txt   /dir2</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123163826.png" alt="image-20210123163826612"></p>
+<p><code>rm</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">格式： hdfs dfs -rm [-r] 【-skipTrash】 URI 【URI 。。。】</span><br><span class="line">作用：   删除参数指定的文件，参数可以有多个。   此命令只删除文件和非空目录。</span><br><span class="line">如果指定-skipTrash选项，那么在回收站可用的情况下，该选项将跳过回收站而直接删除文件；</span><br><span class="line">否则，在回收站可用时，在HDFS Shell 中执行此命令，会将文件暂时放到回收站中。</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs  dfs  -rm  -r  /dir1</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123164211.png" alt="image-20210123164211558"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123164158.png" alt="image-20210123164158288"></p>
+<p><code>cp</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">格式:  hdfs  dfs  -cp URI [URI ...] &lt;dest&gt;</span><br><span class="line">作用:将文件拷贝到目标路径中。如果&lt;dest&gt;为目录的话，可以将多个文件拷贝到该目录下。</span><br><span class="line">-f:选项将覆盖目标，如果它已经存在。</span><br><span class="line">-p:选项将保留文件属性（时间戳、所有权、许可、ACL、XAttr）。</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -cp /dir1/a.txt  /dir2/b.txt</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123165243.png" alt="image-20210123165242936"></p>
+<p><code>cat</code>  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs  -cat  URI [uri  ...]</span><br><span class="line">作用：将参数所指示的文件内容输出到stdout</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs  -cat /install.log</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123165323.png" alt="image-20210123165323770"></p>
+<p><code>chmod</code>  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">格式:      hdfs   dfs  -chmod  [-R]  URI[URI  ...]</span><br><span class="line">作用：    改变文件权限。如果使用  -R 选项，则对整个目录有效递归执行。使用这一命令的用户必须是文件的所属用户，或者超级用户。</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -chmod -R 777 /install.log</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123165633.png" alt="image-20210123165633861"></p>
+<p><code>chown</code>    </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">格式:      hdfs   dfs  -chmod  [-R]  URI[URI  ...]</span><br><span class="line">作用：    改变文件的所属用户和用户组。如果使用  -R 选项，则对整个目录有效递归执行。使用这一命令的用户必须是文件的所属用户，或者超级用户。</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs  dfs  -chown  -R liuchang:liuchang  /install.log</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123170119.png" alt="image-20210123170119217"></p>
+<p><code>appendToFile</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">格式: hdfs dfs -appendToFile &lt;localsrc&gt; ... &lt;dst&gt;</span><br><span class="line">作用: 追加一个或者多个文件到hdfs指定文件中.也可以从命令行读取输入.</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> hdfs dfs -appendToFile  a.xml b.xml  /big.xml</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123171130.png" alt="image-20210123171130128"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123171142.png" alt="image-20210123171142305"></p>
+<h2 id="7、hdfs的高级使用命令"><a href="#7、hdfs的高级使用命令" class="headerlink" title="7、hdfs的高级使用命令"></a>7、hdfs的高级使用命令</h2><h3 id="7-1、HDFS文件限额配置"><a href="#7-1、HDFS文件限额配置" class="headerlink" title="7. 1、HDFS文件限额配置"></a>7. 1、HDFS文件限额配置</h3><p>​     在多人共用HDFS的环境下，配置设置非常重要。特别是在Hadoop处理大量资料的环境，如果没有配额管理，很容易把所有的空间用完造成别人无法存取。Hdfs的配额设定是针对目录而不是针对账号，可以 让每个账号仅操作某一个目录，然后对目录设置配置。 </p>
+<p>​    hdfs文件的限额配置允许我们以文件个数，或者文件大小来限制我们在某个目录下上传的文件数量或者文件内容总量，以便达到我们类似百度网盘网盘等限制每个用户允许上传的最大的文件的量。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -count -q -h /user/root/dir1  #查看配额信息</span><br></pre></td></tr></table></figure>
+<p>所谓的空间限额</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123194445.png" alt="image-20210123194445406"></p>
+<h4 id="7-1-1、数量限额"><a href="#7-1-1、数量限额" class="headerlink" title="7.1.1、数量限额"></a>7.1.1、数量限额</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs  -mkdir -p /user/root/dir    #创建hdfs文件夹</span><br><span class="line">hdfs dfsadmin -setQuota 2  dir      # 给该文件夹下面设置最多上传两个文件，发现只能上传一个文件</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123194704.png" alt="image-20210123194704468"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123195020.png" alt="image-20210123195020007"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -clrQuota /user/root/dir  # 清除文件数量限制</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123195141.png" alt="image-20210123195141390"></p>
+<p><strong>注意：发现还能上传一个，是由于该文件夹也占用一个限额</strong></p>
+<h4 id="7-1-2、空间大小限额"><a href="#7-1-2、空间大小限额" class="headerlink" title="7.1.2、空间大小限额"></a>7.1.2、空间<strong>大小限额</strong></h4><p> 在设置空间配额时，设置的空间至少是block_size * 3大小</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -setSpaceQuota 4k /user/root/dir   # 限制空间大小4KB</span><br><span class="line">hdfs dfs -put  /root/a.txt  /user/root/dir </span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123200008.png" alt="image-20210123200008922"></p>
+<p>生成任意大小文件的命令:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/zero of=1.txt  bs=1M count=2     #生成2M的文件</span><br></pre></td></tr></table></figure>
+<p>清除空间配额限制</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -clrSpaceQuota /user/root/dir</span><br></pre></td></tr></table></figure>
+<h3 id="7-2、hdfs的安全模式"><a href="#7-2、hdfs的安全模式" class="headerlink" title="7.2、hdfs的安全模式"></a>7.2、hdfs的安全模式</h3><p>安全模式是hadoop的一种<strong>保护机制</strong>，用于保证集群中的数据块的安全性。当集群启动的时候，会首先进入安全模式。当系统处于安全模式时会检查数据块的完整性。</p>
+<p>假设我们设置的副本数（即参数dfs.replication）是3，那么在datanode上就应该有3个副本存在，假设只存在2个副本，那么比例就是2/3=0.666。hdfs默认的副本率0.999。我们的副本率0.666明显小于0.999，因此系统会自动的复制副本到其他dataNode，使得副本率不小于0.999。如果系统中有5个副本，超过我们设定的3个副本，那么系统也会删除多于的2个副本。 </p>
+<p><a href="">在安全模式状态下，文件系统只接受读数据请求，而不接受删除、修改等变更请求</a>。在，当整个系统达到安全标准时，HDFS自动离开安全模式。</p>
+<p><code>安全模式操作命令</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hdfs  dfsadmin  -safemode  get #查看安全模式状态</span><br><span class="line">hdfs  dfsadmin  -safemode  enter #进入安全模式</span><br><span class="line">hdfs  dfsadmin  -safemode  leave #离开安全模式</span><br></pre></td></tr></table></figure>
+<p>这是在安全模式下：</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124153324.png" alt="image-20210124153323959"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123201223.png" alt="image-20210123201223483"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123201157.png" alt="image-20210123201157458"></p>
+<h2 id="8-HDFS基准测试"><a href="#8-HDFS基准测试" class="headerlink" title="8. HDFS基准测试"></a>8. HDFS基准测试</h2><p>实际生产环境当中，hadoop的环境搭建完成之后，第一件事情就是进行压力测试，测试我们的集群的读取和写入速度，测试我们的网络带宽是否足够等一些基准测试</p>
+<h3 id="8-1-测试写入速度"><a href="#8-1-测试写入速度" class="headerlink" title="8.1 测试写入速度"></a>8.1 测试写入速度</h3><p><code>向HDFS文件系统中写入数据,10个文件,每个文件10MB,文件存放到/benchmarks/TestDFSIO中</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop jar /export/servers/hadoop-2.7.5/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-2.7.5.jar  TestDFSIO -write -nrFiles 10  -fileSize 10MB</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123201644.png" alt="image-20210123201644502"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124153618.png" alt="image-20210124153618605"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124153618.png" alt="image-20210124153629548"></p>
+<p>完成之后查看写入速度结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -text  /benchmarks/TestDFSIO/io_write/part-00000</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124153453.png" alt="image-20210124153453069"></p>
+<h3 id="8-2-测试读取速度"><a href="#8-2-测试读取速度" class="headerlink" title="8.2 测试读取速度"></a>8.2 测试读取速度</h3><p>测试hdfs的读取文件性能</p>
+<p>在HDFS文件系统中读入10个文件,每个文件10M</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop jar /export/servers/hadoop-2.7.5/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-2.7.5.jar  TestDFSIO -read -nrFiles 10 -fileSize 10MB</span><br></pre></td></tr></table></figure>
+<p>查看读取果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -text /benchmarks/TestDFSIO/io_read/part-00000</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124153541.png" alt="image-20210124153541361"></p>
+<h3 id="8-3-清除测试数据"><a href="#8-3-清除测试数据" class="headerlink" title="8.3 清除测试数据"></a>8.3 清除测试数据</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop jar /export/servers/hadoop-2.7.5/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-2.7.5.jar   TestDFSIO -clean</span><br></pre></td></tr></table></figure>
+<h2 id="9-HDFS-文件写入过程"><a href="#9-HDFS-文件写入过程" class="headerlink" title="9.HDFS 文件写入过程"></a>9.HDFS 文件写入过程</h2><p> <img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123210322.png"></p>
+<ol>
+<li><p>Client 发起文件上传请求, 通过 RPC 与 NameNode 建立通讯, NameNode 检查目标文件是否已存在, 父目录是否存在, 返回是否可以上传</p>
+</li>
+<li><p>Client 请求第一个 block 该传输到哪些 DataNode 服务器上</p>
+</li>
+<li><p>NameNode 根据配置文件中指定的备份数量及机架感知原理进行文件分配, 返回可用的 DataNode 的地址如: A, B, C</p>
+<ul>
+<li>Hadoop 在设计时考虑到数据的安全与高效, 数据文件默认在 HDFS 上存放三份, 存储策略为本地一份, 同机架内其它某一节点上一份, 不同机架的某一节点上一份。</li>
+</ul>
+</li>
+<li><p>Client 请求 3 台 DataNode 中的一台 A 上传数据（本质上是一个 RPC 调用，建立 pipeline ）, A 收到请求会继续调用 B, 然后 B 调用 C, 将整个 pipeline 建立完成, 后逐级返回 client</p>
+</li>
+<li><p>Client 开始往 A 上传第一个 block（先从磁盘读取数据放到一个本地内存缓存）, 以 packet 为单位（默认64K）, A 收到一个 packet 就会传给 B, B 传给 C. A 每传一个 packet 会放入一个应答队列等待应答</p>
+</li>
+<li><p>数据被分割成一个个 packet 数据包在 pipeline 上依次传输, 在 pipeline 反方向上, 逐个发送 ack（命令正确应答）, 最终由 pipeline 中第一个 DataNode 节点 A 将 pipelineack 发送给 Client</p>
+</li>
+<li><p>当一个 block 传输完成之后, Client 再次请求 NameNode 上传第二个 block 到服务 1</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123210318.png" alt="image-20210123210318660"></p>
+</li>
+</ol>
+<h2 id="10-HDFS-文件读取过程"><a href="#10-HDFS-文件读取过程" class="headerlink" title="10.HDFS 文件读取过程"></a>10.HDFS 文件读取过程</h2><p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123210325.png" alt="1558574532408">    </p>
+<ol>
+<li>Client向NameNode发起RPC请求，来确定请求文件block所在的位置；</li>
+<li>NameNode会视情况返回文件的部分或者全部block列表，对于每个block，NameNode 都会返回含有该 block 副本的 DataNode 地址；  这些返回的 DN 地址，会按照集群拓扑结构得出 DataNode 与客户端的距离，然后进行排序，排序两个规则：网络拓扑结构中距离 Client 近的排靠前；心跳机制中超时汇报的 DN 状态为 STALE，这样的排靠后；</li>
+<li>Client 选取排序靠前的 DataNode 来读取 block，如果客户端本身就是DataNode,那么将从本地直接获取数据(短路读取特性)；</li>
+<li>底层上本质是建立 Socket Stream（FSDataInputStream），重复的调用父类 DataInputStream 的 read 方法，直到这个块上的数据读取完毕；</li>
+<li>当读完列表的 block 后，若文件读取还没有结束，客户端会继续向NameNode 获取下一批的 block 列表；</li>
+<li>读取完一个 block 都会进行 checksum 验证，如果读取 DataNode 时出现错误，客户端会通知 NameNode，然后再从下一个拥有该 block 副本的DataNode 继续读。</li>
+<li>read 方法是并行的读取 block 信息，不是一块一块的读取；NameNode 只是返回Client请求包含块的DataNode地址，并不是返回请求块的数据；</li>
+<li>最终读取来所有的 block 会合并成一个完整的最终文件。</li>
+</ol>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123230136.png" alt="image-20210123230136424"></p>
+<h2 id="11-HDFS-的元数据辅助管理"><a href="#11-HDFS-的元数据辅助管理" class="headerlink" title="11.HDFS 的元数据辅助管理"></a>11.HDFS 的元数据辅助管理</h2><p>当 Hadoop 的集群当中, NameNode的所有元数据信息都保存在了 FsImage 与 Eidts 文件当中, 这两个文件就记录了所有的数据的元数据信息, 元数据信息的保存目录配置在了 <code>hdfs-site.xml</code> 当中</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span></span><br><span class="line">        file:///export/servers/hadoop2.7.5/hadoopDatas/namenodeDatas,          	        		file:///export/servers/hadoop-2.7.5/hadoopDatas/namenodeDatas2</span><br><span class="line">    <span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.edits.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:///export/servers/hadoop-2.7.5/hadoopDatas/nn/edits&lt;/value</span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="11-1-FsImage-和-Edits-详解"><a href="#11-1-FsImage-和-Edits-详解" class="headerlink" title="11.1 FsImage 和 Edits 详解"></a>11.1 FsImage 和 Edits 详解</h4><ul>
+<li><code>edits</code><ul>
+<li><code>edits</code> 存放了客户端最近一段时间的操作日志</li>
+<li>客户端对 HDFS 进行写文件时会首先被记录在 <code>edits</code> 文件中</li>
+<li><code>edits</code> 修改时元数据也会更新</li>
+</ul>
+</li>
+<li><code>fsimage</code><ul>
+<li>NameNode 中关于元数据的镜像, 一般称为检查点, <code>fsimage</code> 存放了一份比较完整的元数据信息</li>
+<li>因为 <code>fsimage</code> 是 NameNode 的完整的镜像, 如果每次都加载到内存生成树状拓扑结构，这是非常耗内存和CPU, 所以一般开始时对 NameNode 的操作都放在 edits 中</li>
+<li><code>fsimage</code> 内容包含了 NameNode 管理下的所有 DataNode 文件及文件 block 及 block 所在的 DataNode 的元数据信息.</li>
+<li>随着 <code>edits</code> 内容增大, 就需要在一定时间点和 <code>fsimage</code> 合并</li>
+</ul>
+</li>
+</ul>
+<h4 id="11-2-fsimage-中的文件信息查看"><a href="#11-2-fsimage-中的文件信息查看" class="headerlink" title="11.2 fsimage 中的文件信息查看"></a>11.2 fsimage 中的文件信息查看</h4><p>使用命令 <code>hdfs  oiv</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /export/servers/hadoop2.7.5/hadoopDatas/namenodeDatas</span><br><span class="line">hdfs oiv -i fsimage_0000000000000000864 -p XML -o hello.xml</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123231308.png" alt="image-20210123231308438"></p>
+<h4 id="11-3-edits-中的文件信息查看"><a href="#11-3-edits-中的文件信息查看" class="headerlink" title="11.3. edits 中的文件信息查看"></a>11.3. edits 中的文件信息查看</h4><p>使用命令 <code>hdfs  oev</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /export/servers/hadoop2.7.5/hadoopDatas/namenodeDatas</span><br><span class="line">hdfs oev -i  edits_0000000000000000865-0000000000000000866 -p XML -o myedit.xml </span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123231457.png" alt="image-20210123231457322"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123231752.png" alt="image-20210123231752528"></p>
+<h4 id="11-4-SecondaryNameNode-如何辅助管理-fsimage-与-edits-文件"><a href="#11-4-SecondaryNameNode-如何辅助管理-fsimage-与-edits-文件" class="headerlink" title="11.4 SecondaryNameNode 如何辅助管理 fsimage 与 edits 文件?"></a>11.4 SecondaryNameNode 如何辅助管理 fsimage 与 edits 文件?</h4><p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123232024.png" alt="image-20210123232024383"></p>
+<ul>
+<li>SecondaryNameNode 定期合并 fsimage 和 edits, 把 edits 控制在一个范围内</li>
+<li>配置 SecondaryNameNode<ul>
+<li>SecondaryNameNode 在 <code>conf/masters</code> 中指定</li>
+<li>在 masters 指定的机器上, 修改 <code>hdfs-site.xml</code><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.http.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>host:50070<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>修改 <code>core-site.xml</code>, 这一步不做配置保持默认也可以<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 多久记录一次 HDFS 镜像, 默认 1小时 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.checkpoint.period<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>3600<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 一次记录多大, 默认 64M --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.checkpoint.size<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>67108864<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210123210331.png" alt="1561707242581">        </li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>SecondaryNameNode 通知 NameNode 切换 editlog</li>
+<li>SecondaryNameNode 从 NameNode 中获得 fsimage 和 editlog(通过http方式)</li>
+<li>SecondaryNameNode 将 fsimage 载入内存, 然后开始合并 editlog, 合并之后成为新的 fsimage</li>
+<li>SecondaryNameNode 将新的 fsimage 发回给 NameNode</li>
+<li>NameNode 用新的 fsimage 替换旧的 fsimage</li>
+</ol>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>完成合并的是 SecondaryNameNode, 会请求 NameNode 停止使用 edits, 暂时将新写操作放入一个新的文件中 <code>edits.new</code></li>
+<li>SecondaryNameNode 从 NameNode 中通过 Http GET 获得 edits, 因为要和 fsimage 合并, 所以也是通过 Http Get 的方式把 fsimage 加载到内存, 然后逐一执行具体对文件系统的操作, 与 fsimage 合并, 生成新的 fsimage, 然后通过 Http POST 的方式把 fsimage 发送给 NameNode. NameNode 从 SecondaryNameNode 获得了 fsimage 后会把原有的 fsimage 替换为新的 fsimage, 把 edits.new 变成 edits. 同时会更新 fstime</li>
+<li>Hadoop 进入安全模式时需要管理员使用 dfsadmin 的 save namespace 来创建新的检查点</li>
+<li>SecondaryNameNode 在合并 edits 和 fsimage 时需要消耗的内存和 NameNode 差不多, 所以一般把 NameNode 和 SecondaryNameNode 放在不同的机器上</li>
+</ul>
+<h1 id="Hadoop-核心-HDFS的API操作"><a href="#Hadoop-核心-HDFS的API操作" class="headerlink" title="Hadoop 核心-HDFS的API操作"></a>Hadoop 核心-HDFS的API操作</h1><h2 id="1-HDFS-的-API-操作"><a href="#1-HDFS-的-API-操作" class="headerlink" title="1:HDFS 的 API 操作"></a>1:HDFS 的 API 操作</h2><h3 id="1-1-配置Windows下Hadoop环境"><a href="#1-1-配置Windows下Hadoop环境" class="headerlink" title="1.1 配置Windows下Hadoop环境"></a>1.1 配置Windows下Hadoop环境</h3><p>在windows系统需要配置hadoop运行环境，否则直接运行代码会出现以下问题:</p>
+<p><code>缺少winutils.exe</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not locate executable null \bin\winutils.exe in the hadoop binaries </span><br></pre></td></tr></table></figure>
+<p><code>缺少hadoop.dll</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unable to load native-hadoop library for your platform… using builtin-Java classes where applicable  </span><br></pre></td></tr></table></figure>
+<p>步骤:</p>
+<p>第一步：将hadoop2.7.5文件夹拷贝到一个没有中文没有空格的路径下面</p>
+<p>第二步：在windows上面配置hadoop的环境变量： HADOOP_HOME，并将%HADOOP_HOME%\bin添加到path中</p>
+<p>第三步：把hadoop2.7.5文件夹中bin目录下的hadoop.dll文件放到系统盘:  C:\Windows\System32 目录</p>
+<p>第四步：关闭windows重启</p>
+<h3 id="1-2-导入-Maven-依赖"><a href="#1-2-导入-Maven-依赖" class="headerlink" title="1.2 导入 Maven 依赖"></a>1.2 导入 Maven 依赖</h3><p>创建一个Maven项目导入依赖</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124142844.png" alt="image-20210124142837075"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>Hadoop_HDFS_api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-common<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-hdfs<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.hadoop<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hadoop-mapreduce-client-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--    &lt;verbal&gt;true&lt;/verbal&gt;--&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-shade-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">goal</span>&gt;</span>shade<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">minimizeJar</span>&gt;</span>true<span class="tag">&lt;/<span class="name">minimizeJar</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-3-使用url方式访问数据（了解）"><a href="#1-3-使用url方式访问数据（了解）" class="headerlink" title="1.3 使用url方式访问数据（了解）"></a>1.3 使用url方式访问数据（了解）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">demo1</span><span class="params">()</span><span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    <span class="comment">//第一步：注册hdfs 的url</span></span><br><span class="line">    URL.setURLStreamHandlerFactory(<span class="keyword">new</span> FsUrlStreamHandlerFactory());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取文件输入流</span></span><br><span class="line">    InputStream inputStream  = <span class="keyword">new</span> URL(<span class="string">&quot;hdfs://node01:8020/a.txt&quot;</span>).openStream();</span><br><span class="line">    <span class="comment">//获取文件输出流</span></span><br><span class="line">    FileOutputStream outputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">&quot;D:\\hello.txt&quot;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//实现文件的拷贝</span></span><br><span class="line">    IOUtils.copy(inputStream, outputStream);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//关闭流</span></span><br><span class="line">    IOUtils.closeQuietly(inputStream);</span><br><span class="line">    IOUtils.closeQuietly(outputStream);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124155053.png" alt="image-20210124155052758"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124155433.png" alt="image-20210124155433663"></p>
+<h3 id="1-4-使用文件系统方式访问数据（掌握）"><a href="#1-4-使用文件系统方式访问数据（掌握）" class="headerlink" title="1.4 使用文件系统方式访问数据（掌握）"></a>1.4 <strong>使用</strong>文件系统方式访问数据（掌握）</h3><h4 id="1-4-1-涉及的主要类"><a href="#1-4-1-涉及的主要类" class="headerlink" title="1.4.1 涉及的主要类"></a>1.4.1 涉及的主要类</h4><p>在 Java 中操作 HDFS, 主要涉及以下 Class:</p>
+<ul>
+<li><p><code>Configuration</code></p>
+<ul>
+<li>该类的对象封转了客户端或者服务器的配置</li>
+</ul>
+</li>
+<li><p><code>FileSystem</code></p>
+<ul>
+<li><p>该类的对象是一个文件系统对象, 可以用该对象的一些方法来对文件进行操作, 通过 FileSystem 的静态方法 get 获得该对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileSystem fs = FileSystem.get(conf)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>get</code> 方法从 <code>conf</code> 中的一个参数 <code>fs.defaultFS</code> 的配置值判断具体是什么类型的文件系统</li>
+<li>如果我们的代码中没有指定 <code>fs.defaultFS</code>, 并且工程 ClassPath 下也没有给定相应的配置, <code>conf</code> 中的默认值就来自于 Hadoop 的 Jar 包中的 <code>core-default.xml</code></li>
+<li>默认值为 <code>file:/// </code>, 则获取的不是一个 DistributedFileSystem 的实例, 而是一个本地文件系统的客户端对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-4-2-获取-FileSystem-的几种方式"><a href="#1-4-2-获取-FileSystem-的几种方式" class="headerlink" title="1.4.2  获取 FileSystem 的几种方式"></a>1.4.2  获取 FileSystem 的几种方式</h4><ul>
+<li>第 一种方式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getFileSystem1</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">    <span class="comment">//指定我们使用的文件系统类型:</span></span><br><span class="line">    configuration.set(<span class="string">&quot;fs.defaultFS&quot;</span>, <span class="string">&quot;hdfs://node01:8020/&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取指定的文件系统</span></span><br><span class="line">    FileSystem fileSystem = FileSystem.get(configuration);</span><br><span class="line">    System.out.println(fileSystem.toString());</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124163036.png" alt="image-20210124163035672"></p>
+<ul>
+<li>第二种方式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getFileSystem2</span><span class="params">()</span> <span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    FileSystem fileSystem = FileSystem.get(<span class="keyword">new</span> URI(<span class="string">&quot;hdfs://node01:8020&quot;</span>), <span class="keyword">new</span>       Configuration());</span><br><span class="line">    System.out.println(<span class="string">&quot;fileSystem:&quot;</span>+fileSystem);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124163342.png" alt="image-20210124163341941"></p>
+<ul>
+<li>第三种方式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getFileSystem3</span><span class="params">()</span> <span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">    configuration.set(<span class="string">&quot;fs.defaultFS&quot;</span>, <span class="string">&quot;hdfs://node01:8020&quot;</span>);</span><br><span class="line">    FileSystem fileSystem = FileSystem.newInstance(configuration);</span><br><span class="line">    System.out.println(fileSystem.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124163623.png" alt="image-20210124163623315"></p>
+<ul>
+<li>第四种方式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getFileSystem4</span><span class="params">()</span> <span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    FileSystem fileSystem = FileSystem.newInstance(<span class="keyword">new</span> URI(<span class="string">&quot;hdfs://node01:8020&quot;</span>) ,<span class="keyword">new</span> Configuration());</span><br><span class="line">    System.out.println(fileSystem.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124163720.png" alt="image-20210124163720096"></p>
+<h4 id="1-4-3-遍历-HDFS-中所有文件"><a href="#1-4-3-遍历-HDFS-中所有文件" class="headerlink" title="1.4.3  遍历 HDFS 中所有文件"></a>1.4.3  遍历 HDFS 中所有文件</h4><ul>
+<li>使用 API 遍历</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">listFiles</span><span class="params">()</span> <span class="keyword">throws</span> URISyntaxException, IOException </span>&#123;</span><br><span class="line">      <span class="comment">//获取fileSystem类</span></span><br><span class="line">      FileSystem fileSystem = FileSystem.get(<span class="keyword">new</span> URI(<span class="string">&quot;hdfs://node01:8020&quot;</span>), <span class="keyword">new</span> Configuration());</span><br><span class="line">      <span class="comment">//获取RemoteIterator 得到所有的文件或者文件夹，第一个参数指定遍历的路径，第二个参数表示是否要递归遍历</span></span><br><span class="line">      RemoteIterator&lt;LocatedFileStatus&gt; listFiles = fileSystem.listFiles(<span class="keyword">new</span> Path(<span class="string">&quot;/&quot;</span>), <span class="keyword">true</span>);</span><br><span class="line">      <span class="keyword">while</span> (listFiles.hasNext())&#123;</span><br><span class="line">          LocatedFileStatus fileStatus = listFiles.next();</span><br><span class="line">          <span class="comment">//获取文件的绝对路径、文件名字</span></span><br><span class="line">          System.out.println(<span class="string">&quot;绝对路径&quot;</span>+fileStatus.getPath()+<span class="string">&quot;文件名字:&quot;</span>+fileStatus.getPath().getName());</span><br><span class="line">          <span class="comment">//文件的block信息</span></span><br><span class="line">          BlockLocation[] blockLocations = fileStatus.getBlockLocations();</span><br><span class="line">          System.out.println(<span class="string">&quot;block数：&quot;</span>+blockLocations.length);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124164953.png" alt="image-20210124164952780"></p>
+<h4 id="1-4-4-HDFS-上创建文件夹"><a href="#1-4-4-HDFS-上创建文件夹" class="headerlink" title="1.4.4  HDFS 上创建文件夹"></a>1.4.4  HDFS 上创建文件夹</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mkdirs</span><span class="params">()</span> <span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    FileSystem fileSystem = FileSystem.get(<span class="keyword">new</span> URI(<span class="string">&quot;hdfs://node01:8020&quot;</span>), <span class="keyword">new</span> Configuration());</span><br><span class="line">    <span class="keyword">boolean</span> mkdirs = fileSystem.mkdirs(<span class="keyword">new</span> Path(<span class="string">&quot;/hello/mydir/test&quot;</span>));</span><br><span class="line">    fileSystem.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124165711.png" alt="image-20210124165710759"></p>
+<p>创建一个文件夹：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mkdirs</span><span class="params">()</span> <span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">	<span class="comment">//1.获取文件系统</span></span><br><span class="line">	FileSystem fileSystem = FileSystem.get(<span class="keyword">new</span> URI(<span class="string">&quot;hdfs://node01:8020&quot;</span>), <span class="keyword">new</span> Configuration());</span><br><span class="line">	<span class="comment">//2.1 创建一个文件</span></span><br><span class="line">	fileSystem.create(<span class="keyword">new</span> Path(<span class="string">&quot;/aaa/bbb/ccc/a.txt&quot;</span>));</span><br><span class="line">	System.out.println();</span><br><span class="line">	<span class="comment">//3.关闭fileSystem</span></span><br><span class="line">	fileSystem.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124170139.png" alt="image-20210124170139003"></p>
+<h4 id="1-4-4-下载文件"><a href="#1-4-4-下载文件" class="headerlink" title="1.4.4 下载文件"></a>1.4.4 下载文件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getFileToLocal</span><span class="params">()</span><span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    <span class="comment">//1.获取FileSystem</span></span><br><span class="line">    FileSystem fileSystem = FileSystem.get(<span class="keyword">new</span> URI(<span class="string">&quot;hdfs://node01:8020&quot;</span>), <span class="keyword">new</span> Configuration());</span><br><span class="line">    <span class="comment">//2.获取hdfs的输入流</span></span><br><span class="line">    FSDataInputStream inputStream = fileSystem.open(<span class="keyword">new</span> Path(<span class="string">&quot;/a.txt&quot;</span>));</span><br><span class="line">    <span class="comment">//3.获取本地路径的输出流</span></span><br><span class="line">    FileOutputStream  outputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">&quot;D:\\a.txt&quot;</span>));</span><br><span class="line">    <span class="comment">//4.文件的拷贝</span></span><br><span class="line">    IOUtils.copy(inputStream,outputStream );</span><br><span class="line">    <span class="comment">//5.关闭流</span></span><br><span class="line">    IOUtils.closeQuietly(inputStream);</span><br><span class="line">    IOUtils.closeQuietly(outputStream);</span><br><span class="line">    fileSystem.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getFileToLocal2</span><span class="params">()</span><span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    <span class="comment">//1.获取FileSystem</span></span><br><span class="line">    FileSystem fileSystem = FileSystem.get(<span class="keyword">new</span> URI(<span class="string">&quot;hdfs://node01:8020&quot;</span>), <span class="keyword">new</span> Configuration());</span><br><span class="line">    <span class="comment">//2.调用copyToLocalFile方法</span></span><br><span class="line">    fileSystem.copyToLocalFile(<span class="keyword">new</span> Path(<span class="string">&quot;/a.txt&quot;</span>),<span class="keyword">new</span> Path(<span class="string">&quot;D://b.txt&quot;</span>));</span><br><span class="line">    <span class="comment">//3.关闭fileSystem</span></span><br><span class="line">    fileSystem.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124170931.png" alt="image-20210124170931438"></p>
+<h4 id="1-4-5-HDFS-文件上传"><a href="#1-4-5-HDFS-文件上传" class="headerlink" title="1.4.5 HDFS 文件上传"></a>1.4.5 HDFS 文件上传</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">putData</span><span class="params">()</span> <span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    FileSystem fileSystem = FileSystem.get(<span class="keyword">new</span> URI(<span class="string">&quot;hdfs://node01:8020&quot;</span>), <span class="keyword">new</span> Configuration());</span><br><span class="line">    fileSystem.copyFromLocalFile(<span class="keyword">new</span> Path(<span class="string">&quot;file:///c:\\install.log&quot;</span>),<span class="keyword">new</span> Path(<span class="string">&quot;/hello/mydir/test&quot;</span>));</span><br><span class="line">    fileSystem.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124172517.png" alt="image-20210124172517464"></p>
+<h4 id="1-4-6-hdfs访问权限控制"><a href="#1-4-6-hdfs访问权限控制" class="headerlink" title="1.4.6 hdfs访问权限控制"></a>1.4.6 hdfs访问权限控制</h4><ol>
+<li>停止hdfs集群，在node01机器上执行以下命令</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /export/servers/hadoop-2.7.5</span><br><span class="line">sbin/stop-dfs.sh</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>修改node01机器上的hdfs-site.xml当中的配置文件</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /export/servers/hadoop-2.7.5/etc/hadoop</span><br><span class="line">vim hdfs-site.xml</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.permissions.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>修改完成之后配置文件发送到其他机器上面去</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp hdfs-site.xml node02:$PWD</span><br><span class="line">scp hdfs-site.xml node03:$PWD</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>重启hdfs集群</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /export/servers/hadoop-2.7.5</span><br><span class="line">sbin/start-dfs.sh</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>随意上传一些文件到我们hadoop集群当中准备测试使用</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /export/servers/hadoop-2.7.5/etc/hadoop</span><br><span class="line">hdfs dfs -mkdir /config</span><br><span class="line">hdfs dfs -put *.xml /config</span><br><span class="line">hdfs dfs -chmod 600 /config/core-site.xml</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>使用代码准备下载文件</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getConfig</span><span class="params">()</span><span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    FileSystem fileSystem = FileSystem.get(<span class="keyword">new</span> URI(<span class="string">&quot;hdfs://node01:8020&quot;</span>), <span class="keyword">new</span> Configuration(),<span class="string">&quot;hadoop&quot;</span>);</span><br><span class="line">    fileSystem.copyToLocalFile(<span class="keyword">new</span> Path(<span class="string">&quot;/config/core-site.xml&quot;</span>),<span class="keyword">new</span> Path(<span class="string">&quot;file:///c:/core-site.xml&quot;</span>));</span><br><span class="line">    fileSystem.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-4-7-小文件合并"><a href="#1-4-7-小文件合并" class="headerlink" title="1.4.7 小文件合并"></a>1.4.7 小文件合并</h4><p>由于 Hadoop 擅长存储大文件，因为大文件的元数据信息比较少，如果 Hadoop 集群当中有大量的小文件，那么每个小文件都需要维护一份元数据信息，会大大的增加集群管理元数据的内存压力，所以在实际工作当中，如果有必要一定要将小文件合并成大文件进行一起处理</p>
+<p>在我们的 HDFS 的 Shell 命令模式下，可以通过命令行将很多的 hdfs 文件合并成一个大文件下载到本地</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /export/servers</span><br><span class="line">hdfs dfs -getmerge /config/*.xml ./hello.xml</span><br></pre></td></tr></table></figure>
+<p>既然可以在下载的时候将这些小文件合并成一个大文件一起下载，那么肯定就可以在上传的时候将小文件合并到一个大文件里面去</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124222946.png" alt="1561707333240">    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mergeFile</span><span class="params">()</span> <span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    <span class="comment">//获取分布式文件系统</span></span><br><span class="line">    FileSystem fileSystem = FileSystem.get(<span class="keyword">new</span> URI(<span class="string">&quot;hdfs://192.168.52.250:8020&quot;</span>), <span class="keyword">new</span> Configuration(),<span class="string">&quot;root&quot;</span>);</span><br><span class="line">    FSDataOutputStream outputStream = fileSystem.create(<span class="keyword">new</span> Path(<span class="string">&quot;/bigfile.txt&quot;</span>));</span><br><span class="line">    <span class="comment">//获取本地文件系统</span></span><br><span class="line">    LocalFileSystem local = FileSystem.getLocal(<span class="keyword">new</span> Configuration());</span><br><span class="line">    <span class="comment">//通过本地文件系统获取文件列表，为一个集合</span></span><br><span class="line">    FileStatus[] fileStatuses = local.listStatus(<span class="keyword">new</span> Path(<span class="string">&quot;file:///E:\\input&quot;</span>));</span><br><span class="line">    <span class="keyword">for</span> (FileStatus fileStatus : fileStatuses) &#123;</span><br><span class="line">        FSDataInputStream inputStream = local.open(fileStatus.getPath());</span><br><span class="line">       	IOUtils.copy(inputStream,outputStream);</span><br><span class="line">        IOUtils.closeQuietly(inputStream);</span><br><span class="line">    &#125;</span><br><span class="line">    IOUtils.closeQuietly(outputStream);</span><br><span class="line">    local.close();</span><br><span class="line">    fileSystem.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2：HDFS的高可用机制"><a href="#2：HDFS的高可用机制" class="headerlink" title="2：HDFS的高可用机制"></a>2：HDFS的高可用机制</h2><h3 id="2-1-HDFS高可用介绍"><a href="#2-1-HDFS高可用介绍" class="headerlink" title="2.1 HDFS高可用介绍"></a>2.1 HDFS高可用介绍</h3><p>在Hadoop 中，NameNode 所处的位置是非常重要的，整个HDFS文件系统的元数据信息都由NameNode 来管理，NameNode的可用性直接决定了Hadoop 的可用性，一旦NameNode进程不能工作了，就会影响整个集群的正常使用。 </p>
+<p>在典型的HA集群中，两台独立的机器被配置为NameNode。在工作集群中，NameNode机器中的一个处于Active状态，另一个处于Standby状态。Active NameNode负责群集中的所有客户端操作，而Standby充当从服务器。Standby机器保持足够的状态以提供快速故障切换（如果需要）。</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124222927.png" alt="1558778991087">    </p>
+<h3 id="2-2-组件介绍"><a href="#2-2-组件介绍" class="headerlink" title="2.2 组件介绍"></a>2.2 组件介绍</h3><p><code>ZKFailoverController</code></p>
+<p>是基于Zookeeper的故障转移控制器，它负责控制NameNode的主备切换，ZKFailoverController会监测NameNode的健康状态，当发现Active NameNode出现异常时会通过Zookeeper进行一次新的选举，完成Active和Standby状态的切换</p>
+<p><code>HealthMonitor</code></p>
+<p>周期性调用NameNode的HAServiceProtocol RPC接口（monitorHealth 和 getServiceStatus），监控NameNode的健康状态并向ZKFailoverController反馈</p>
+<p><code>ActiveStandbyElector</code></p>
+<p>接收ZKFC的选举请求，通过Zookeeper自动完成主备选举，选举完成后回调ZKFailoverController的主备切换方法对NameNode进行Active和Standby状态的切换.</p>
+<p><code>DataNode</code></p>
+<p>NameNode包含了HDFS的元数据信息和数据块信息（blockmap），其中数据块信息通过DataNode主动向Active NameNode和Standby NameNode上报</p>
+<p><code>共享存储系统</code></p>
+<p>共享存储系统负责存储HDFS的元数据（EditsLog），Active NameNode（写入）和 Standby NameNode（读取）通过共享存储系统实现元数据同步，在主备切换过程中，新的Active NameNode必须确保元数据同步完成才能对外提供服务</p>
+<h2 id="3-Hadoop的联邦机制-Federation"><a href="#3-Hadoop的联邦机制-Federation" class="headerlink" title="3: Hadoop的联邦机制(Federation)"></a>3: Hadoop的联邦机制(Federation)</h2><h3 id="3-1背景概述"><a href="#3-1背景概述" class="headerlink" title="3.1背景概述"></a>3.1<strong>背景概述</strong></h3><p>单NameNode的架构使得HDFS在集群扩展性和性能上都有潜在的问题，当集群大到一定程度后，NameNode进程使用的内存可能会达到上百G，NameNode成为了性能的瓶颈。因而提出了namenode水平扩展方案– Federation。</p>
+<p>Federation中文意思为联邦,联盟，是NameNode的Federation,也就是会有多个NameNode。多个NameNode的情况意味着有多个namespace(命名空间)，区别于HA模式下的多NameNode，它们是拥有着同一个namespace。既然说到了NameNode的命名空间的概念,这里就看一下现有的HDFS数据管理架构,如下图所示:</p>
+<p> <img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210125000544.png" alt="image-20210125000544453"></p>
+<p>从上图中,我们可以很明显地看出现有的HDFS数据管理,数据存储2层分层的结构.也就是说,所有关于存储数据的信息和管理是放在NameNode这边,而真实数据的存储则是在各个DataNode下.而这些隶属于同一个NameNode所管理的数据都是在同一个命名空间下的.而一个namespace对应一个block pool。Block Pool是同一个namespace下的block的集合.当然这是我们最常见的单个namespace的情况,也就是一个NameNode管理集群中所有元数据信息的时候.如果我们遇到了之前提到的NameNode内存使用过高的问题,这时候怎么办?元数据空间依然还是在不断增大,一味调高NameNode的jvm大小绝对不是一个持久的办法.这时候就诞生了HDFS Federation的机制.</p>
+<h3 id="3-2-Federation架构设计"><a href="#3-2-Federation架构设计" class="headerlink" title="3.2 Federation架构设计"></a>3.2 <strong>Federation架构设计</strong></h3><p>HDFS Federation是解决namenode内存瓶颈问题的水平横向扩展方案。</p>
+<p>Federation意味着在集群中将会有多个namenode/namespace。这些namenode之间是联合的，也就是说，他们之间相互独立且不需要互相协调，各自分工，管理自己的区域。分布式的datanode被用作通用的数据块存储存储设备。每个datanode要向集群中所有的namenode注册，且周期性地向所有namenode发送心跳和块报告，并执行来自所有namenode的命令。 </p>
+<p>Federation一个典型的例子就是上面提到的NameNode内存过高问题,我们完全可以将上面部分大的文件目录移到另外一个NameNode上做管理.<strong>更重要的一点在于,这些NameNode是共享集群中所有的DataNode的,它们还是在同一个集群内的**</strong>。**</p>
+<p>这时候在DataNode上就不仅仅存储一个Block Pool下的数据了,而是多个(在DataNode的datadir所在目录里面查看BP-xx.xx.xx.xx打头的目录)。</p>
+<p><strong>概括起来：</strong></p>
+<p>多个NN共用一个集群里的存储资源，每个NN都可以单独对外提供服务。</p>
+<p>每个NN都会定义一个存储池，有单独的id，每个DN都为所有存储池提供存储。</p>
+<p>DN会按照存储池id向其对应的NN汇报块信息，同时，DN会向所有NN汇报本地存储可用资源情况。</p>
+<p><strong>HDFS Federation不足</strong></p>
+<p>HDFS Federation并没有完全解决单点故障问题。虽然namenode/namespace存在多个，但是从单个namenode/namespace看，仍然存在单点故障：如果某个namenode挂掉了，其管理的相应的文件便不可以访问。Federation中每个namenode仍然像之前HDFS上实现一样，配有一个secondary namenode，以便主namenode挂掉一下，用于还原元数据信息。</p>
+<p>所以一般集群规模真的很大的时候，会采用HA+Federation的部署方案。也就是每个联合的namenodes都是ha的。</p>
+
+
+        
+
+      
+    </div>
+
+      <!-- 相关文章推荐 -->
+     
+          
+
+
+     
+
+    
+    
+    
+
+    <div>
+          
+            
+
+          
+    </div>
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div class="read-over">-------------------本文结束 <i class="fa fa-paw"></i> 感谢您的阅读-------------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+      <div>
+        <div class="share_reward">
+  <div>坚持原创技术分享，感谢您的支持和鼓励！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Student-Chang
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://studentliuchang.gitee.io/Hadoop-HDFS/" title="Hadoop核心HDFS">https://studentliuchang.gitee.io/Hadoop-HDFS/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" rel="tag"> <i class="fa fa-tag"></i> 大数据技术学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Zookeeper/" rel="next" title="Zookeeper">
+                Zookeeper <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+         <div
+  data-weibo-title="分享到微博"
+  data-qq-title="分享到QQ"
+  data-douban-title="分享到豆瓣"
+  class="social-share"
+  class="share-component"
+
+
+
+  data-disabled="qzone,google+,linkedin"
+  data-description="Share.js - 一键分享到微博，QQ空间，腾讯微博，人人，豆瓣...">
+   分享到：
+</div>
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/OIP.jpg"
+                alt="" />
+              </a>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a rel="external nofollow" href="https://github.com/Student-chang/Student-chang.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a rel="external nofollow" href="773395726@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+            <!--
+            <div id="music163player">
+                <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1336790004&auto=1&height=66"></iframe>
+            </div>
+            -->
+
+          
+          
+
+          
+          
+
+          <!--近期文章版块 began-->
+          
+              <div class="links-of-blogroll motion-element links-of-blogroll-block">
+                <div class="links-of-blogroll-title">
+                  <i class="fa fa-history fa-" aria-hidden="true"></i>
+                  近期文章
+                </div>
+                <ul class="links-of-blogroll-list">
+                  
+                  
+                    <li class='my-links-of-blogroll-li'>
+                      <a href="/Hadoop-HDFS/" title="Hadoop核心HDFS" target="_blank">Hadoop核心HDFS</a>
+                    </li>
+                  
+                    <li class='my-links-of-blogroll-li'>
+                      <a href="/Zookeeper/" title="Zookeeper" target="_blank">Zookeeper</a>
+                    </li>
+                  
+                    <li class='my-links-of-blogroll-li'>
+                      <a href="/2021-01-08-Big-data%E4%B9%8BETL/" title="Big data-ETL-Kettle" target="_blank">Big data-ETL-Kettle</a>
+                    </li>
+                  
+                    <li class='my-links-of-blogroll-li'>
+                      <a href="/JavaWeb%E5%A4%A7%E4%BD%9C%E4%B8%9A%EF%BC%9A%E7%89%B9%E6%95%88%E9%A1%B5%E9%9D%A2/" title="复习" target="_blank">复习</a>
+                    </li>
+                  
+                    <li class='my-links-of-blogroll-li'>
+                      <a href="/%E5%BA%94%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%A4%A7%E4%BD%9C%E4%B8%9A/" title="复习" target="_blank">复习</a>
+                    </li>
+                  
+                </ul>
+              </div>
+          
+          <!--近期文章版块 end-->
+
+          
+              <!-- canvas粒子时钟 -->
+              <!-- canvas粒子时钟 https://www.cnblogs.com/xiaohuochai/p/6368039.html
+  https://www.html5tricks.com/html5-canvas-dance-time.html
+ -->
+<div id="">
+  <canvas id="canvas" style="width:60%;">
+</div>
+<script async>
+(function(){
+  var WINDOW_WIDTH = 820;
+  		var WINDOW_HEIGHT = 250;
+  		var RADIUS = 7; //球半径
+  		var NUMBER_GAP = 10; //数字之间的间隙
+  		var u=0.65; //碰撞能量损耗系数
+  		var context; //Canvas绘制上下文
+  		var balls = []; //存储彩色的小球
+  		const colors = ["#33B5E5","#0099CC","#AA66CC","#9933CC","#99CC00","#669900","#FFBB33","#FF8800","#FF4444","#CC0000"]; //彩色小球的颜色
+  		var currentNums = []; //屏幕显示的8个字符
+  		var digit =
+                  [
+                      [
+                          [0,0,1,1,1,0,0],
+                          [0,1,1,0,1,1,0],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,0,1,1,0],
+                          [0,0,1,1,1,0,0]
+                      ],//0
+                      [
+                          [0,0,0,1,1,0,0],
+                          [0,1,1,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [1,1,1,1,1,1,1]
+                      ],//1
+                      [
+                          [0,1,1,1,1,1,0],
+                          [1,1,0,0,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,1,1,0,0,0],
+                          [0,1,1,0,0,0,0],
+                          [1,1,0,0,0,0,0],
+                          [1,1,0,0,0,1,1],
+                          [1,1,1,1,1,1,1]
+                      ],//2
+                      [
+                          [1,1,1,1,1,1,1],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,1,1,1,0,0],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,1,1,1,0]
+                      ],//3
+                      [
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,1,1,1,0],
+                          [0,0,1,1,1,1,0],
+                          [0,1,1,0,1,1,0],
+                          [1,1,0,0,1,1,0],
+                          [1,1,1,1,1,1,1],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,1,1,1,1]
+                      ],//4
+                      [
+                          [1,1,1,1,1,1,1],
+                          [1,1,0,0,0,0,0],
+                          [1,1,0,0,0,0,0],
+                          [1,1,1,1,1,1,0],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,1,1,1,0]
+                      ],//5
+                      [
+                          [0,0,0,0,1,1,0],
+                          [0,0,1,1,0,0,0],
+                          [0,1,1,0,0,0,0],
+                          [1,1,0,0,0,0,0],
+                          [1,1,0,1,1,1,0],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,1,1,1,0]
+                      ],//6
+                      [
+                          [1,1,1,1,1,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,1,1,0,0,0],
+                          [0,0,1,1,0,0,0],
+                          [0,0,1,1,0,0,0],
+                          [0,0,1,1,0,0,0]
+                      ],//7
+                      [
+                          [0,1,1,1,1,1,0],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,1,1,1,0],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,1,1,1,0]
+                      ],//8
+                      [
+                          [0,1,1,1,1,1,0],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,1,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,1,1,0,0],
+                          [0,1,1,0,0,0,0]
+                      ],//9
+                      [
+                          [0,0,0,0],
+                          [0,0,0,0],
+                          [0,1,1,0],
+                          [0,1,1,0],
+                          [0,0,0,0],
+                          [0,0,0,0],
+                          [0,1,1,0],
+                          [0,1,1,0],
+                          [0,0,0,0],
+                          [0,0,0,0]
+                      ]//:
+                  ];
+
+  		function drawDatetime(cxt){
+  			var nums = [];
+
+  			context.fillStyle="#005eac"
+  			var date = new Date();
+  			var offsetX = 70, offsetY = 30;
+  			var hours = date.getHours();
+  			var num1 = Math.floor(hours/10);
+  			var num2 = hours%10;
+  			nums.push({num: num1});
+  			nums.push({num: num2});
+  			nums.push({num: 10}); //冒号
+  			var minutes = date.getMinutes();
+  			var num1 = Math.floor(minutes/10);
+  			var num2 = minutes%10;
+  			nums.push({num: num1});
+  			nums.push({num: num2});
+  			nums.push({num: 10}); //冒号
+  			var seconds = date.getSeconds();
+  			var num1 = Math.floor(seconds/10);
+  			var num2 = seconds%10;
+  			nums.push({num: num1});
+  			nums.push({num: num2});
+
+  			for(var x = 0;x<nums.length;x++){
+  				nums[x].offsetX = offsetX;
+  				offsetX = drawSingleNumber(offsetX,offsetY, nums[x].num,cxt);
+  				//两个数字连一块，应该间隔一些距离
+  				if(x<nums.length-1){
+  					if((nums[x].num!=10) &&(nums[x+1].num!=10)){
+  						offsetX+=NUMBER_GAP;
+  					}
+  				}
+  			}
+
+  			//说明这是初始化
+  			if(currentNums.length ==0){
+  				currentNums = nums;
+  			}else{
+  				//进行比较
+  				for(var index = 0;index<currentNums.length;index++){
+  					if(currentNums[index].num!=nums[index].num){
+  						//不一样时，添加彩色小球
+  						addBalls(nums[index]);
+  						currentNums[index].num=nums[index].num;
+  					}
+  				}
+  			}
+  			renderBalls(cxt);
+  			updateBalls();
+
+  			return date;
+  		}
+
+  		function addBalls (item) {
+  			var num = item.num;
+  			var numMatrix = digit[num];
+  			for(var y = 0;y<numMatrix.length;y++){
+  				for(var x = 0;x<numMatrix[y].length;x++){
+  					if(numMatrix[y][x]==1){
+  						var ball={
+  							offsetX:item.offsetX+RADIUS+RADIUS*2*x,
+  							offsetY:30+RADIUS+RADIUS*2*y,
+  							color:colors[Math.floor(Math.random()*colors.length)],
+  							g:1.5+Math.random(),
+  							vx:Math.pow(-1, Math.ceil(Math.random()*10))*4+Math.random(),
+  							vy:-5
+  						}
+  						balls.push(ball);
+  					}
+  				}
+  			}
+  		}
+
+  		function renderBalls(cxt){
+  			for(var index = 0;index<balls.length;index++){
+  				cxt.beginPath();
+  				cxt.fillStyle=balls[index].color;
+  				cxt.arc(balls[index].offsetX, balls[index].offsetY, RADIUS, 0, 2*Math.PI);
+  				cxt.fill();
+  			}
+  		}
+
+  		function updateBalls () {
+  			var i =0;
+  			for(var index = 0;index<balls.length;index++){
+  				var ball = balls[index];
+  				ball.offsetX += ball.vx;
+  				ball.offsetY += ball.vy;
+  				ball.vy+=ball.g;
+  				if(ball.offsetY > (WINDOW_HEIGHT-RADIUS)){
+  					ball.offsetY= WINDOW_HEIGHT-RADIUS;
+  					ball.vy=-ball.vy*u;
+  				}
+  				if(ball.offsetX>RADIUS&&ball.offsetX<(WINDOW_WIDTH-RADIUS)){
+
+  					balls[i]=balls[index];
+  					i++;
+  				}
+  			}
+  			//去除出边界的球
+  			for(;i<balls.length;i++){
+  				balls.pop();
+  			}
+  		}
+  		function drawSingleNumber(offsetX, offsetY, num, cxt){
+  			var numMatrix = digit[num];
+  			for(var y = 0;y<numMatrix.length;y++){
+  				for(var x = 0;x<numMatrix[y].length;x++){
+  					if(numMatrix[y][x]==1){
+  						cxt.beginPath();
+  						cxt.arc(offsetX+RADIUS+RADIUS*2*x,offsetY+RADIUS+RADIUS*2*y,RADIUS,0,2*Math.PI);
+  						cxt.fill();
+  					}
+  				}
+  			}
+  			cxt.beginPath();
+  			offsetX += numMatrix[0].length*RADIUS*2;
+  			return offsetX;
+  		}
+
+  		var canvas = document.getElementById("canvas");
+  		canvas.width=WINDOW_WIDTH;
+  		canvas.height=WINDOW_HEIGHT;
+  		context = canvas.getContext("2d");
+
+  		//记录当前绘制的时刻
+  		var currentDate = new Date();
+
+  		setInterval(function(){
+  			//清空整个Canvas，重新绘制内容
+  			context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+  			drawDatetime(context);
+  		}, 50)
+})();
+</script>
+
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hadoop%E6%A0%B8%E5%BF%83HDFS"><span class="nav-number">1.</span> <span class="nav-text">Hadoop核心HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HDFS%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1. HDFS概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%8E%86%E5%8F%B2"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 历史</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HDFS%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.2.</span> <span class="nav-text">2. HDFS应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E9%80%82%E5%90%88%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 适合的应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E4%B8%8D%E9%80%82%E5%90%88%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 不适合的应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-HDFS-%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="nav-number">1.3.</span> <span class="nav-text">3. HDFS 的架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-NameNode%E5%92%8CDataNode"><span class="nav-number">1.4.</span> <span class="nav-text">4:NameNode和DataNode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-NameNode%E4%BD%9C%E7%94%A8"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 NameNode作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-DataNode%E4%BD%9C%E7%94%A8"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 DataNode作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-HDFS%E7%9A%84%E5%89%AF%E6%9C%AC%E6%9C%BA%E5%88%B6%E5%92%8C%E6%9C%BA%E6%9E%B6%E6%84%9F%E7%9F%A5"><span class="nav-number">1.5.</span> <span class="nav-text">5:HDFS的副本机制和机架感知</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-HDFS-%E6%96%87%E4%BB%B6%E5%89%AF%E6%9C%AC%E6%9C%BA%E5%88%B6"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 HDFS 文件副本机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E6%9C%BA%E6%9E%B6%E6%84%9F%E7%9F%A5"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 机架感知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81hdfs%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">1.6.</span> <span class="nav-text">6、hdfs的命令行使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81hdfs%E7%9A%84%E9%AB%98%E7%BA%A7%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.7.</span> <span class="nav-text">7、hdfs的高级使用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1%E3%80%81HDFS%E6%96%87%E4%BB%B6%E9%99%90%E9%A2%9D%E9%85%8D%E7%BD%AE"><span class="nav-number">1.7.1.</span> <span class="nav-text">7. 1、HDFS文件限额配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-1%E3%80%81%E6%95%B0%E9%87%8F%E9%99%90%E9%A2%9D"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">7.1.1、数量限额</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-2%E3%80%81%E7%A9%BA%E9%97%B4%E5%A4%A7%E5%B0%8F%E9%99%90%E9%A2%9D"><span class="nav-number">1.7.1.2.</span> <span class="nav-text">7.1.2、空间大小限额</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2%E3%80%81hdfs%E7%9A%84%E5%AE%89%E5%85%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.7.2.</span> <span class="nav-text">7.2、hdfs的安全模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-HDFS%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95"><span class="nav-number">1.8.</span> <span class="nav-text">8. HDFS基准测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E6%B5%8B%E8%AF%95%E5%86%99%E5%85%A5%E9%80%9F%E5%BA%A6"><span class="nav-number">1.8.1.</span> <span class="nav-text">8.1 测试写入速度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E6%B5%8B%E8%AF%95%E8%AF%BB%E5%8F%96%E9%80%9F%E5%BA%A6"><span class="nav-number">1.8.2.</span> <span class="nav-text">8.2 测试读取速度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-%E6%B8%85%E9%99%A4%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE"><span class="nav-number">1.8.3.</span> <span class="nav-text">8.3 清除测试数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-HDFS-%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%E8%BF%87%E7%A8%8B"><span class="nav-number">1.9.</span> <span class="nav-text">9.HDFS 文件写入过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-HDFS-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E8%BF%87%E7%A8%8B"><span class="nav-number">1.10.</span> <span class="nav-text">10.HDFS 文件读取过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-HDFS-%E7%9A%84%E5%85%83%E6%95%B0%E6%8D%AE%E8%BE%85%E5%8A%A9%E7%AE%A1%E7%90%86"><span class="nav-number">1.11.</span> <span class="nav-text">11.HDFS 的元数据辅助管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-1-FsImage-%E5%92%8C-Edits-%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.11.0.1.</span> <span class="nav-text">11.1 FsImage 和 Edits 详解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-2-fsimage-%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF%E6%9F%A5%E7%9C%8B"><span class="nav-number">1.11.0.2.</span> <span class="nav-text">11.2 fsimage 中的文件信息查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-3-edits-%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF%E6%9F%A5%E7%9C%8B"><span class="nav-number">1.11.0.3.</span> <span class="nav-text">11.3. edits 中的文件信息查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-4-SecondaryNameNode-%E5%A6%82%E4%BD%95%E8%BE%85%E5%8A%A9%E7%AE%A1%E7%90%86-fsimage-%E4%B8%8E-edits-%E6%96%87%E4%BB%B6"><span class="nav-number">1.11.0.4.</span> <span class="nav-text">11.4 SecondaryNameNode 如何辅助管理 fsimage 与 edits 文件?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.11.0.5.</span> <span class="nav-text">特点</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hadoop-%E6%A0%B8%E5%BF%83-HDFS%E7%9A%84API%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">Hadoop 核心-HDFS的API操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HDFS-%E7%9A%84-API-%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">1:HDFS 的 API 操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E9%85%8D%E7%BD%AEWindows%E4%B8%8BHadoop%E7%8E%AF%E5%A2%83"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1 配置Windows下Hadoop环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%AF%BC%E5%85%A5-Maven-%E4%BE%9D%E8%B5%96"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.2 导入 Maven 依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E4%BD%BF%E7%94%A8url%E6%96%B9%E5%BC%8F%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="nav-number">2.1.3.</span> <span class="nav-text">1.3 使用url方式访问数据（了解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E4%BD%BF%E7%94%A8%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%96%B9%E5%BC%8F%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89"><span class="nav-number">2.1.4.</span> <span class="nav-text">1.4 使用文件系统方式访问数据（掌握）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-%E6%B6%89%E5%8F%8A%E7%9A%84%E4%B8%BB%E8%A6%81%E7%B1%BB"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">1.4.1 涉及的主要类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-%E8%8E%B7%E5%8F%96-FileSystem-%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">1.4.2  获取 FileSystem 的几种方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-3-%E9%81%8D%E5%8E%86-HDFS-%E4%B8%AD%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.4.3.</span> <span class="nav-text">1.4.3  遍历 HDFS 中所有文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-4-HDFS-%E4%B8%8A%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">2.1.4.4.</span> <span class="nav-text">1.4.4  HDFS 上创建文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-4-%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.4.5.</span> <span class="nav-text">1.4.4 下载文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-5-HDFS-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">2.1.4.6.</span> <span class="nav-text">1.4.5 HDFS 文件上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-6-hdfs%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="nav-number">2.1.4.7.</span> <span class="nav-text">1.4.6 hdfs访问权限控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-7-%E5%B0%8F%E6%96%87%E4%BB%B6%E5%90%88%E5%B9%B6"><span class="nav-number">2.1.4.8.</span> <span class="nav-text">1.4.7 小文件合并</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%BC%9AHDFS%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.</span> <span class="nav-text">2：HDFS的高可用机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-HDFS%E9%AB%98%E5%8F%AF%E7%94%A8%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1 HDFS高可用介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2 组件介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Hadoop%E7%9A%84%E8%81%94%E9%82%A6%E6%9C%BA%E5%88%B6-Federation"><span class="nav-number">2.3.</span> <span class="nav-text">3: Hadoop的联邦机制(Federation)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1%E8%83%8C%E6%99%AF%E6%A6%82%E8%BF%B0"><span class="nav-number">2.3.1.</span> <span class="nav-text">3.1背景概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Federation%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.3.2.</span> <span class="nav-text">3.2 Federation架构设计</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+      
+
+      <!-- 标签云 -->
+      <!--
+      
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+      <h3 class="widget-title">Tag Cloud</h3>
+      <div id="myCanvasContainer" class="widget tagcloud">
+          <canvas width="250" height="250" id="resCanvas" style="width=100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-%E5%9F%BA%E7%A1%80/" rel="tag">C++基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%A4%8D%E4%B9%A0/" rel="tag">Java复习</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%AD%A6%E4%B9%A0/" rel="tag">Java学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode%E7%BB%83%E4%B9%A0/" rel="tag">LeetCode练习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%A4%8D%E4%B9%A0/" rel="tag">Linux复习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" rel="tag">大数据技术学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" rel="tag">工具使用</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" rel="tag">框架学习</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%9B%E6%A6%82%E5%A4%8D%E4%B9%A0/" rel="tag">毛概复习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" rel="tag">算法练习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" rel="tag">计算机网络复习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a><span class="tag-list-count">3</span></li></ul>
+          </canvas>
+      </div>
+      </div>
+      
+      -->
+      <!-- 标签云 -->
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+       <i class="fa fa-heartbeat"></i>
+  </span>
+  
+    <span class="author" itemprop="copyrightHolder"> &nbsp;Student-Chang</span>
+  
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="subscribe-box">
+    <div class="subscribe-menu">
+      <div class="subscribe-hover">
+        <div class="subscribe-description">微信扫一扫，关注公众号</div>
+      </div>
+    </div>
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <!--
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+   
+
+  
+  
+    
+      <span class="site-uv">
+        
+        我的第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 位朋友，
+      </span>
+    
+
+    
+      <span class="site-pv">
+        历经 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次回眸才与你相遇
+        <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      </span>
+    
+  
+
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/velocity-animate@1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/velocity-animate@1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script id="ribbon" type="text/javascript" size="60" alpha="0.1"  zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="/js/src/Valine.min.js"></script>
+
+  <!-- https://deserts.io/diy-a-comment-system/ -->
+  <script type="text/javascript">
+    new Valine({
+        lang: 'zh-cn',
+        admin_email: 'xxxxxxxxx@qq.com', //博主邮箱
+        el: '#comments' ,
+        appId: 'sHYSv9H4MTrkhqSHuSV7qMJy-gzGzoHsz',
+        appKey: 'LPQzlNsO4apryXI3SJcYBnQm',
+        emoticon_url: 'https://cdn.jsdelivr.net/gh/leafjame/cdn/emoji',
+       // emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+        emoticon_list: ["大佬.gif","点赞.gif","尴尬.gif","鼓掌.gif","笑哭.gif","害羞.gif","黑人问号.gif","坏笑.gif","惊吓.gif","可爱.gif","抠鼻子.gif","流汗.gif","色.gif","吐血.gif","无奈.gif","huaji.png","liuhanhuaji.png","mojinghuaji.png","coshuaji.png","shounuehuaji.png","jizhi.png","doge.png","chigua.png","motion_1016.png","motion_1012.png","motion_1017.png","f_hufen.png","f_geili.png","f_jiong.png","f_meng.png","f_shenma.png","f_v5.png","c_onef.png","c_onem.png","c_fivem.png","c_oney.png","c_teny.png","c_oy.png","1f60a.png","1f60b.png","1f60d.png","1f60e.png","1f61a.png","1f62d.png","1f601.png","1f602.png","1f605.png","1f606.png","1f607.png","1f618.png","1f630.png","1f631.png","1f632.png","1f633.png","1f63e.png","1f63f.png","1f638.png","1f639.png","zhayanjian.gif","ciya.gif","xieyanxiao.gif","huaixiao.gif","xiaoku.gif","leiben.gif","penxue.gif","hanxiao.gif","baiyan.gif","cahan.gif","fadai.gif","haixiu.gif","haqian.gif","ku.gif","liuhan.gif","OK.gif","qiang.gif","woshou.gif","baoquan.gif","qiudale.gif","se.gif","yinxian.gif","yun.gif","zaijian.gif"],
+        placeholder: '&#x270d;&nbsp;写评论',
+  });
+
+  <!--点击邮件中的链接跳转至相应评论-->
+  if(window.location.hash){
+      var checkExist = setInterval(function() {
+         if ($(window.location.hash).length) {
+            $('html, body').animate({scrollTop: $(window.location.hash).offset().top-90}, 1000);
+            clearInterval(checkExist);
+         }
+      }, 100);
+   }
+
+  </script>
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+    <script>  function addCount(Counter){var $visitors=$('.leancloud_visitors');var url=$visitors.attr('id').trim();var title=$visitors.attr('data-flag-title').trim();Counter('get','/classes/Counter',{where:JSON.stringify({url})}).done(function({results}){if(results.length>0){var counter=results[0]; var $element=$(document.getElementById(url));$element.find('.leancloud-visitors-count').text(counter.time+1);Counter('put','/classes/Counter/'+counter.objectId,JSON.stringify({time:{'__op':'Increment','amount':1}})) .fail(function({responseJSON}){console.log('Failed to save Visitor num, with error message: '+responseJSON.error);})}else{ Counter('post','/classes/Counter',JSON.stringify({title:title,url:url,time:1})).done(function(){var $element=$(document.getElementById(url));$element.find('.leancloud-visitors-count').text(1);}).fail(function(){console.log('Failed to create');});}}).fail(function({responseJSON}){console.log('LeanCloud Counter Error: '+responseJSON.code+' '+responseJSON.error);});}$(function(){$.get('https://app-router.leancloud.cn/2/route?appId='+'sHYSv9H4MTrkhqSHuSV7qMJy-gzGzoHsz').done(function({api_server}){var Counter=function(method,url,data){return $.ajax({method:method,url:'https://'+api_server+'/1.1'+url,headers:{'X-LC-Id':'sHYSv9H4MTrkhqSHuSV7qMJy-gzGzoHsz','X-LC-Key':'LPQzlNsO4apryXI3SJcYBnQm','Content-Type':'application/json',},data:data});};  const localhost=/http:\/\/(localhost|127.0.0.1|0.0.0.0)/;if(localhost.test(document.URL))return;addCount(Counter);});});</script>
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <!-- Tidio 在线联系功能、鼠标点击特效、页面反馈...-->
+  
+
+
+  
+    <script async src="/js/cursor/love.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/src/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = true;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+
+
+  <script async language="javascript">
+
+    var div = document.createElement("div");
+    //插入到自定义的theme-info或者copyright之后
+    var copyright = document.querySelector(".theme-info2") || document.querySelector(".copyright");
+
+    function show_run_time(){
+        window.setTimeout("show_run_time()", 1000);
+      // BirthDay=new Date("08/07/2019 20:00:00");
+        BirthDay=new Date("06/13/2019 20:00:00");
+        today=new Date();
+        timeold=(today.getTime()-BirthDay.getTime());
+        sectimeold=timeold/1000
+        secondsold=Math.floor(sectimeold);
+        msPerDay=24*60*60*1000
+        e_daysold=timeold/msPerDay
+        daysold=Math.floor(e_daysold);
+        e_hrsold=(e_daysold-daysold)*24;
+        hrsold=setzero(Math.floor(e_hrsold));
+        e_minsold=(e_hrsold-hrsold)*60;
+        minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+        seconds=setzero(Math.floor((e_minsold-minsold)*60));
+
+        // 使用zh-Hans.yml的文字替换
+        div.innerHTML = "我已在此等候你 " + "<span style='color: #1890ff'> " + daysold + " </span> 天 <span style='color: #1890ff'>" + hrsold + " </span>时 <span style='color: #1890ff'>" + minsold + " </span>分 <span style='color: #1890ff'>" + seconds + " </span>秒 ";
+
+        document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    }
+    function setzero(i){
+        if (i<10)
+        {i="0" + i};
+        return i;
+    }
+
+    show_run_time();
+
+  </script>
+
+
+
+
+<!-- 旋转魔方 -->
+
+   
+      
+<style>
+  /*最外层容器样式*/
+  .wrap {
+    width: 0px;
+    height: 0px;
+    /*margin: 80px;*/
+    /*position: relative;*/
+    position: fixed;
+    bottom: 120px;
+    right: 80px;
+    z-index: 999;
+  }
+
+  /*包裹所有容器样式*/
+  .cube {
+    width: 0px;
+    height: 0px;
+    margin: 0 auto;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    transform: rotateX(-30deg) rotateY(-80deg);
+    animation: rotate linear 10s infinite;
+  }
+
+  @-webkit-keyframes rotate {
+    from {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+    to {
+      transform: rotateX(360deg) rotateY(360deg);
+    }
+  }
+
+  .cube div {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    opacity: 0.8;
+    transition: all .4s;
+  }
+
+  /*定义所有图片样式*/
+  .pic {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cube .out_front {
+    transform: rotateY(0deg) translateZ(25px);
+  }
+
+  .cube .out_back {
+    transform: translateZ(-25px) rotateY(180deg);
+  }
+
+  .cube .out_left {
+    transform: rotateY(-90deg) translateZ(25px);
+  }
+
+  .cube .out_right {
+    transform: rotateY(90deg) translateZ(25px);
+  }
+
+  .cube .out_top {
+    transform: rotateX(90deg) translateZ(25px);
+  }
+
+  .cube .out_bottom {
+    transform: rotateX(-90deg) translateZ(25px);
+  }
+
+  /*定义小正方体样式*/
+  .cube span {
+    display: block;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+  }
+
+  .cube .in_pic {
+    width: 25px;
+    height:25px;
+  }
+
+  .cube .in_front {
+    transform: rotateY(0deg) translateZ(12px);
+  }
+
+  .cube .in_back {
+    transform: translateZ(-12px) rotateY(180deg);
+  }
+
+  .cube .in_left {
+    transform: rotateY(-90deg) translateZ(12px);
+  }
+
+  .cube .in_right {
+    transform: rotateY(90deg) translateZ(12px);
+  }
+
+  .cube .in_top {
+    transform: rotateX(90deg) translateZ(12px);
+  }
+
+  .cube .in_bottom {
+    transform: rotateX(-90deg) translateZ(12px);
+  }
+
+  /*鼠标移入后样式*/
+  .cube:hover .out_front {
+    transform: rotateY(0deg) translateZ(50px);
+  }
+
+  .cube:hover .out_back {
+    transform: translateZ(-50px) rotateY(180deg);
+  }
+
+  .cube:hover .out_left {
+    transform: rotateY(-90deg) translateZ(50px);
+  }
+
+  .cube:hover .out_right {
+    transform: rotateY(90deg) translateZ(50px);
+  }
+
+  .cube:hover .out_top {
+    transform: rotateX(90deg) translateZ(50px);
+  }
+
+  .cube:hover .out_bottom {
+    transform: rotateX(-90deg) translateZ(50px);
+  }
+</style>
+
+<div class="wrap">
+
+		<!--包裹所有元素的容器-->
+		<div class="cube">
+			<!--前面图片 -->
+			<div class="out_front">
+			  <a onclick="back2top()">
+				  <img src="https://s2.ax1x.com/2019/10/14/KpEBJx.th.jpg" class="pic" />
+				</a>
+			</div>
+			<!--后面图片 -->
+			<div class="out_back">
+				<a onclick="back2top()">
+          <img src="https://s2.ax1x.com/2019/10/14/KpEBJx.th.jpg" class="pic" />
+        </a>
+			</div>
+			<!--左面图片 -->
+			<div class="out_left">
+        <a onclick="back2top()">
+				  <img src="https://s2.ax1x.com/2019/10/14/KpEBJx.th.jpg" class="pic" />
+				</a>
+			</div>
+			<!--右面图片 -->
+			<div class="out_right">
+				<a onclick="back2top()">
+          <img src="https://s2.ax1x.com/2019/10/14/KpEBJx.th.jpg" class="pic" />
+        </a>
+			</div>
+			<!--上面图片 -->
+			<div class="out_top">
+				<a onclick="back2top()">
+          <img src="https://s2.ax1x.com/2019/10/14/KpEBJx.th.jpg" class="pic" />
+        </a>
+			</div>
+			<!--下面图片 -->
+			<div class="out_bottom">
+				<a onclick="back2top()">
+          <img src="https://s2.ax1x.com/2019/10/14/KpEBJx.th.jpg" class="pic" />
+        </a>
+			</div>
+
+			<!--小正方体 -->
+			<span class="in_front">
+				<img src="https://s2.ax1x.com/2019/10/14/KptCPf.th.jpg" class="in_pic" />
+			</span>
+			<span class="in_back">
+			     <img src="https://s2.ax1x.com/2019/10/14/KptCPf.th.jpg" class="in_pic" />
+			</span>
+			<span class="in_left">
+				<img src="https://s2.ax1x.com/2019/10/14/KptCPf.th.jpg" class="in_pic" />
+			</span>
+			<span class="in_right">
+				<img src="https://s2.ax1x.com/2019/10/14/KptCPf.th.jpg" class="in_pic" />
+			</span>
+			<span class="in_top">
+				<img src="https://s2.ax1x.com/2019/10/14/KptCPf.th.jpg" class="in_pic" />
+			</span>
+			<span class="in_bottom">
+				<img src="https://s2.ax1x.com/2019/10/14/KptCPf.th.jpg" class="in_pic" />
+			</span>
+		</div>
+
+</div>
+
+<script>
+  function back2top(){
+    $('html, body').animate({scrollTop: 0}, 500);
+  }
+</script>
+
+   
+
+
+<!-- Console 输出第三方个性化字体 -->
+
+  <script async type="text/javascript" src="/figlet/fetch.min.js"></script>
+  <script type="text/javascript" src="/figlet/figlet.js"></script>
+  <script type="text/javascript">
+
+      figlet.defaults({fontPath: "/figlet/fonts"});
+      figlet("Welcome To Leaface", "Big Money-ne", function(err, text) {
+          if (err) {
+              console.log("something went wrong...");
+              console.dir(err);
+              return;
+          }
+          console.log(text);
+      });
+  </script>
+
+
+  <!-- Console 输出自定义字体 -->
+  
+    <script async type="text/javascript">
+        var text = "Welcome To Leaface";
+        var date = '2021-01-29';
+        console.log("%c " + text, "font-size:100px;color:white;border-radius:20px;height:200px; background:-webkit-linear-gradient(yellow,orange,red,green,blue,purple);text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);");
+        console.info('\n' + ' %c Leafae Site %c https://www.liaofuzhan.com ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
+        console.info('\n' + ' %c Leafae QQ %c 793458585 ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
+        console.info('\n' + ' %c Leafae Wechat %c leaface ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
+       // console.log("%c Time: " + date, "font-size:100px;white:"+fcolor+";border-radius:20px;height:200px; background:-webkit-linear-gradient(yellow,orange,red,green,blue,purple);text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);  background-image: linear-gradient(to right, orangered, orange, gold, lightgreen, cyan, dodgerblue, mediumpurple, hotpink, orangered);");
+       // console.log("%c .", "padding:300px 600px;line-height:10px;background:url(https://s2.ax1x.com/2019/10/17/KkoAJJ.md.png) no-repeat;");
+    </script>
+  
+
+
+  <!-- 看板娘 -->
+  
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+  <script async type="text/javascript" src="/js/src/clipboard.min.js"></script>
+  <script async type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+  <!--share.js-->
+  <link async rel="stylesheet" href="/sharejs/css/share.min.css">
+  <script async src="/sharejs/js/social-share.min.js"></script>
+
+  <!-- 模仿知乎卡片样式链接、崩溃欺骗特效 -->
+  <script async type="text/javascript" src="/js/src/linkcard.js"></script>
+
+  <!--崩溃欺骗 放在js文件最后-->
+  <!--
+  <script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+  -->
+  <style>
+#selectionCopyright {
+    position: absolute;
+    display: none;
+    background: rgba(244,67,54,.7);
+    color: #fff;
+    border-radius: 6px;
+    box-shadow: none;
+    border: none;
+    font-size: 14px;
+}
+#selectionCopyright a{
+    color:#fff;
+    border-color: #fff;
+}
+#selectionCopyright::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 8px 6px 0;
+    border-color: transparent rgba(244,67,54,.7) transparent transparent;
+    position: absolute;
+    left: -8px;
+    top:50%;
+    transform:translateY(-50%);
+}
+</style>
+<button id="selectionCopyright" disabled="disabled">本文发表于[<a href="https://studentliuchang.gitee.io/">AsiFadeAway.com</a>]分享请注明来源！</button>
+<script>
+window.onload = function() {
+    function selectText() {
+        if (document.selection) { //IE浏览器下
+            return document.selection.createRange().text; //返回选中的文字
+        } else { //非IE浏览器下
+            return window.getSelection().toString(); //返回选中的文字
+        }
+    }
+    var content = document.getElementsByTagName("body")[0];
+    var scTip = document.getElementById('selectionCopyright');
+
+    content.onmouseup = function(ev) { //设定一个onmouseup事件
+        var ev = ev || window.event;
+        var left = ev.clientX;//获取鼠标相对浏览器可视区域左上角水平距离距离
+        var top = ev.clientY;//获取鼠标相对浏览器可视区域左上角垂直距离距离
+        var xScroll = Math.max(document.body.scrollLeft, document.documentElement.scrollLeft);//获取文档水平滚动距离
+        var yScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);//获取文档垂直滚动距离
+        if (selectText().length > 0) {
+            setTimeout(function() { //设定一个定时器
+                scTip.style.display = 'inline-block';
+                scTip.style.left = left + xScroll + 15 + 'px';//鼠标当前x值
+                scTip.style.top = top + yScroll - 15 + 'px';//鼠标当前y值
+            }, 100);
+        } else {
+            scTip.style.display = 'none';
+        }
+    };
+
+    content.onclick = function(ev) {
+        var ev = ev || window.event;
+        ev.cancelBubble = true;
+    };
+    document.onclick = function() {
+        scTip.style.display = 'none';
+    };
+};
+</script>
+ 
+
+</body>
+</html>
