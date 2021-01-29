@@ -1,0 +1,2759 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script async src="//cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  <link href="//cdn.jsdelivr.net/npm/pace-js@1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "7e63d6bc"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+<link href="https://fonts.loli.net/css?family=EB+Garamond:400,400i,700,700i|Noto+Serif+SC:400,500,700&display=swap&subset=chinese-simplified" rel="stylesheet">
+
+
+
+
+  
+
+<link href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="大数据技术学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Zookeeper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zookeeper">
+<meta property="og:url" content="https://studentliuchang.gitee.io/Zookeeper/index.html">
+<meta property="og:site_name" content="热爱生活">
+<meta property="og:description" content="Zookeeper">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210124225234380.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0OTc4Mzc4,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124224353.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124224353.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124225157.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124225138.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124225146.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124225129.jpg">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124151457.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124151557.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124151628.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124151640.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124225129.jpg">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224420.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224503.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224546.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224610.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224642.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224716.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224805.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224834.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224900.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224916.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129225114.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224946.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129225718.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129225625.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230115.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230141.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230337.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230435.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230528.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230556.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230649.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129231201.png">
+<meta property="og:image" content="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129231217.png">
+<meta property="article:published_time" content="2021-01-24T11:10:48.000Z">
+<meta property="article:modified_time" content="2021-01-29T15:12:45.669Z">
+<meta property="article:author" content="Student-Chang">
+<meta property="article:tag" content="大数据技术学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210124225234380.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0OTc4Mzc4,size_16,color_FFFFFF,t_70">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"flipYIn","post_header":"perspectiveRightIn","post_body":"perspectiveLeftIn","coll_header":"swoopIn","sidebar":"shrinkIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://studentliuchang.gitee.io/Zookeeper/"/>
+
+
+
+
+
+<!-- 设置文章需要密码访问 -->
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+  <title>Zookeeper | 热爱生活</title>
+  
+
+
+
+
+
+
+
+
+
+  
+      <!-- 球型气泡标签云 -->
+      <script type="text/javascript" src="/js/src/bubble.js"></script>
+  
+
+  
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <!--fork me from github-->
+    <a target="_blank" rel="noopener" href="https://student-chang.github.io/" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#64CEAA; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">热爱生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-life">
+          <a href="/life/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-apple"></i> <br />
+            
+            生活
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            友链
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://studentliuchang.gitee.io/Zookeeper/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/OIP.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="热爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Zookeeper</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+             
+                 <i class="fa fa-thumb-tack"></i>
+                 <font color=7D26CD>置顶</font>
+                 <span class="post-meta-divider">|</span>
+             
+
+             
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-24T19:10:48+08:00">
+                2021-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AEHadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Zookeeper/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Zookeeper/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Zookeeper/" class="leancloud_visitors" data-flag-title="Zookeeper">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          <!--
+          
+          -->
+
+          
+            <span class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </span>
+          
+
+          <!-- 隐藏文章内标题下，内容描述
+          
+          -->
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a><font color="#f15b6c"><em>Zookeeper</em></font></h1><p><img src="https://img-blog.csdnimg.cn/20210124225234380.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0OTc4Mzc4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<a id="more"></a>
+
+<h2 id="1-Zookeeper-的概述"><a href="#1-Zookeeper-的概述" class="headerlink" title="1 Zookeeper 的概述"></a>1 Zookeeper 的概述</h2><ul>
+<li><p>Zookeeper 是一个开源的分布式协调服务框架 ，主要用来解决分布式集群中应用系统的一致性问题和数据管理问题</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124224353.png">    </p>
+</li>
+</ul>
+<h2 id="2-Zookeeper的特点"><a href="#2-Zookeeper的特点" class="headerlink" title="2:Zookeeper的特点"></a>2:Zookeeper的特点</h2><ul>
+<li>Zookeeper 本质上是一个分布式文件系统, 适合存放小文件，也可以理解为一个数据库</li>
+</ul>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124224353.png" alt="1561706594495"></p>
+<ul>
+<li><p>在上图左侧, Zookeeper 中存储的其实是一个又一个 Znode, Znode 是 Zookeeper 中的节点</p>
+<ul>
+<li>Znode 是有路径的, 例如 <code>/data/host1</code>, <code>/data/host2</code>, 这个路径也可以理解为是 Znode 的 Name</li>
+<li>Znode 也可以携带数据, 例如说某个 Znode 的路径是 <code>/data/host1</code>, 其值是一个字符串 <code>&quot;192.168.0.1&quot;</code></li>
+</ul>
+</li>
+<li><p>正因为 Znode 的特性, 所以 Zookeeper 可以对外提供出一个类似于文件系统的试图, 可以通过操作文件系统的方式操作 Zookeeper</p>
+<ul>
+<li><p>使用路径获取 Znode</p>
+</li>
+<li><p>获取 Znode 携带的数据</p>
+</li>
+<li><p>修改 Znode 携带的数据</p>
+</li>
+<li><p>删除 Znode</p>
+</li>
+<li><p>添加 Znode</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-Zookeeper的应用场景"><a href="#3-Zookeeper的应用场景" class="headerlink" title="3.Zookeeper的应用场景"></a>3.Zookeeper的应用场景</h2><h3 id="3-1-数据发布-订阅"><a href="#3-1-数据发布-订阅" class="headerlink" title="3.1 数据发布/订阅"></a>3.1 数据发布/订阅</h3><p>　　<a href="">数据发布/订阅系统</a>,需要发布者将数据发布到Zookeeper的节点上，供订阅者进行数据订阅，进而达到动态获取数据的目的，实现配置信息的集中式管理和数据的动态更新。</p>
+<p>​     发布/订阅一般有两种设计模式：推模式和拉模式，服务端主动将数据更新发送给所有订阅的客户端称为推模式；客户端主动请求获取最新数据称为拉模式.</p>
+<p>   Zookeeper采用了推拉相结合的模式，客户端向服务端注册自己需要关注的节点，一旦该节点数据发生变更，那么服务端就会向相应的客户端推送Watcher事件通知，客户端接收到此通知后，主动到服务端获取最新的数据。</p>
+<h3 id="3-2-命名服务"><a href="#3-2-命名服务" class="headerlink" title="3.2 命名服务"></a>3.2 命名服务</h3><p>　　命名服务是分步实现系统中较为常见的一类场景，分布式系统中，被命名的实体通常可以是集群中的机器、提供的服务地址或远程对象等，通过命名服务，客户端可以根据指定名字来获取资源的实体，在分布式环境中，上层应用仅仅需要一个全局唯一的名字。Zookeeper可以实现一套分布式全局唯一ID的分配机制。</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124225157.png" alt="1561706612382"></p>
+<p>　　通过调用Zookeeper节点创建的API接口就可以创建一个顺序节点，并且在API返回值中会返回这个节点的完整名字，利用此特性，可以生成全局ID，其步骤如下</p>
+<p>　　1. 客户端根据任务类型，在指定类型的任务下通过调用接口创建一个顺序节点，如”job-“。</p>
+<p>　　2. 创建完成后，会返回一个完整的节点名，如”job-00000001”。</p>
+<p>　　3. 客户端拼接type类型和返回值后，就可以作为全局唯一ID了，如”type2-job-00000001”。</p>
+<h3 id="3-3-分布式协调-通知"><a href="#3-3-分布式协调-通知" class="headerlink" title="3.3 分布式协调/通知"></a>3.3 分布式协调/通知</h3><p>　　Zookeeper中特有的Watcher注册于异步通知机制，能够很好地实现分布式环境下不同机器，甚至不同系统之间的协调与通知，从而实现对数据变更的实时处理。通常的做法是不同的客户端都对Zookeeper上的同一个数据节点进行Watcher注册，监听数据节点的变化（包括节点本身和子节点），若数据节点发生变化，那么所有订阅的客户端都能够接收到相应的Watcher通知，并作出相应处理。</p>
+<p>　　在绝大多数分布式系统中，系统机器间的通信无外乎<a href=""><strong>心跳检测</strong>、<strong>工作进度汇报</strong>和<strong>系统调度</strong></a>。</p>
+<p>　　① <strong>心跳检测</strong>，不同机器间需要检测到彼此是否在正常运行，可以使用Zookeeper实现机器间的心跳检测，基于其临时节点特性（临时节点的生存周期是客户端会话，客户端若当即后，其临时节点自然不再存在），可以让不同机器都在Zookeeper的一个指定节点下创建临时子节点，不同的机器之间可以根据这个临时子节点来判断对应的客户端机器是否存活。通过Zookeeper可以大大减少系统耦合。</p>
+<p>　　② <strong>工作进度汇报</strong>，通常任务被分发到不同机器后，需要实时地将自己的任务执行进度汇报给分发系统，可以在Zookeeper上选择一个节点，每个任务客户端都在这个节点下面创建临时子节点，这样不仅可以判断机器是否存活，同时各个机器可以将自己的任务执行进度写到该临时节点中去，以便中心系统能够实时获取任务的执行进度。</p>
+<p>　　③ <strong>系统调度</strong>，Zookeeper能够实现如下系统调度模式：分布式系统由控制台和一些客户端系统两部分构成，控制台的职责就是需要将一些指令信息发送给所有的客户端，以控制他们进行相应的业务逻辑，后台管理人员在控制台上做一些操作，实际上就是修改Zookeeper上某些节点的数据，Zookeeper可以把数据变更以时间通知的形式发送给订阅客户端。</p>
+<h3 id="3-4分布式锁"><a href="#3-4分布式锁" class="headerlink" title="3.4分布式锁"></a>3.4分布式锁</h3><p>　　分布式锁用于控制分布式系统之间同步访问共享资源的一种方式，可以保证不同系统访问一个或一组资源时的一致性，主要分为排它锁和共享锁。</p>
+<p>　　<a href=""><strong>排它锁又称为写锁或独占锁</strong></a>，若事务T1对数据对象O1加上了排它锁，那么在整个加锁期间，只允许事务T1对O1进行读取和更新操作，其他任何事务都不能再对这个数据对象进行任何类型的操作，直到T1释放了排它锁。</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124225138.png" alt="1561706638372">　</p>
+<p>　① <strong>获取锁</strong>，在需要获取排它锁时，所有客户端通过调用接口，在/exclusive_lock节点下创建临时子节点/exclusive_lock/lock。Zookeeper可以保证只有一个客户端能够创建成功，没有成功的客户端需要注册/exclusive_lock节点监听。</p>
+<p>　② <strong>释放锁</strong>，当获取锁的客户端宕机或者正常完成业务逻辑都会导致临时节点的删除，此时，所有在/exclusive_lock节点上注册监听的客户端都会收到通知，可以重新发起分布式锁获取。</p>
+<p><a href=""><strong>共享锁又称为读锁</strong></a>，若事务T1对数据对象O1加上共享锁，那么当前事务只能对O1进行读取操作，其他事务也只能对这个数据对象加共享锁，直到该数据对象上的所有共享锁都被释放。在需要获取共享锁时，所有客户端都会到/shared_lock下面创建一个临时顺序节点</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124225146.png" alt="1558060430149">　</p>
+<h3 id="3-5-分布式队列"><a href="#3-5-分布式队列" class="headerlink" title="3.5 分布式队列"></a>3.5 分布式队列</h3><p>　 有一些时候，多个团队需要共同完成一个任务，比如，A团队将Hadoop集群计算的结果交给B团队继续计算，B完成了自己任务再交给C团队继续做。这就有点像业务系统的工作流一样，一环一环地传下 去.</p>
+<p>   分布式环境下，我们同样需要一个类似单进程队列的组件，用来实现跨进程、跨主机、跨网络的数据共享和数据传递，这就是我们的分布式队列。 </p>
+<h2 id="4-Zookeeper的架构"><a href="#4-Zookeeper的架构" class="headerlink" title="4.Zookeeper的架构"></a>4.Zookeeper的架构</h2><p>Zookeeper集群是一个基于主从架构的高可用集群</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124225129.jpg"></p>
+<p>​     每个服务器承担如下三种角色中的一种</p>
+<ul>
+<li><p><strong>Leader</strong> 一个Zookeeper集群同一时间只会有一个实际工作的Leader，它会发起并维护与各Follwer及Observer间的心跳。所有的写操作必须要通过Leader完成再由Leader将写操作广播给其它服务器。</p>
+</li>
+<li><p><strong>Follower</strong> 一个Zookeeper集群可能同时存在多个Follower，它会响应Leader的心跳。Follower可直接处理并返回客户端的读请求，同时会将写请求转发给Leader处理，并且负责在Leader处理写请求时对请求进行投票。</p>
+</li>
+<li><p><strong>Observer</strong> 角色与Follower类似，但是无投票权。</p>
+<p>  <a href="assets/1558078642625.png">1558078642625</a>    </p>
+</li>
+</ul>
+<h2 id="5-Zookeeper的选举机制"><a href="#5-Zookeeper的选举机制" class="headerlink" title="5:Zookeeper的选举机制"></a>5:Zookeeper的选举机制</h2><p> Leader选举是保证分布式<a href="">数据一致性</a>的关键所在。当Zookeeper集群中的一台服务器出现以下两种情况之一时，需要进入Leader选举。</p>
+<h3 id="5-1-服务器启动时期的Leader选举"><a href="#5-1-服务器启动时期的Leader选举" class="headerlink" title="5.1. 服务器启动时期的Leader选举"></a>5.1. 服务器启动时期的Leader选举</h3><p>​    若进行Leader选举，则至少需要两台机器，这里选取3台机器组成的服务器集群为例。在集群初始化阶段，当有一台服务器Server1启动时，其单独无法进行和完成Leader选举，当第二台服务器Server2启动时，此时两台机器可以相互通信，每台机器都试图找到Leader，于是进入Leader选举过程。选举过程如下</p>
+<p>　　<a href="">(1)</a> <a href="">每个Server发出一个投票</a>。由于是初始情况，Server1和Server2都会将自己作为Leader服务器来进行投票，每次投票会包含所推举的服务器的myid和ZXID，使用(myid, ZXID)来表示，此时Server1的投票为(1, 0)，Server2的投票为(2, 0)，然后各自将这个投票发给集群中其他机器。</p>
+<p>　　<a href="">(2)</a> <a href="">接受来自各个服务器的投票</a>。集群的每个服务器收到投票后，首先判断该投票的有效性，如检查是否是本轮投票、是否来自LOOKING状态的服务器。</p>
+<p>　　<a href="">(3)</a> <a href="">处理投票</a>。针对每一个投票，服务器都需要将别人的投票和自己的投票进行PK，PK规则如下</p>
+<p>　　　　<strong>· 优先检查ZXID</strong>。ZXID比较大的服务器优先作为Leader。</p>
+<p>　　　　<strong>· 如果ZXID相同，那么就比较myid</strong>。myid较大的服务器作为Leader服务器。</p>
+<p>　　对于Server1而言，它的投票是(1, 0)，接收Server2的投票为(2, 0)，首先会比较两者的ZXID，均为0，再比较myid，此时Server2的myid最大，于是更新自己的投票为(2, 0)，然后重新投票，对于Server2而言，其无须更新自己的投票，只是再次向集群中所有机器发出上一次投票信息即可。</p>
+<p>　　<a href="">(4) 统计投票</a>。每次投票后，服务器都会统计投票信息，判断是否已经有过半机器接受到相同的投票信息，对于Server1、Server2而言，都统计出集群中已经有两台机器接受了(2, 0)的投票信息，此时便认为已经选出了Leader。</p>
+<p>　　<a href="">(5) 改变服务器状态</a>。一旦确定了Leader，每个服务器就会更新自己的状态，如果是Follower，那么就变更为FOLLOWING，如果是Leader，就变更为LEADING。</p>
+<h3 id="5-2-服务器运行时期的Leader选举"><a href="#5-2-服务器运行时期的Leader选举" class="headerlink" title="5.2.服务器运行时期的Leader选举"></a>5.2.服务器运行时期的Leader选举</h3><p>　　在Zookeeper运行期间，Leader与非Leader服务器各司其职，即便当有非Leader服务器宕机或新加入，此时也不会影响Leader，但是一旦Leader服务器挂了，那么整个集群将暂停对外服务，进入新一轮Leader选举，其过程和启动时期的Leader选举过程基本一致过程相同。</p>
+<h2 id="6-Zookeeper安装"><a href="#6-Zookeeper安装" class="headerlink" title="6: Zookeeper安装"></a>6: Zookeeper安装</h2><p>集群规划</p>
+<table>
+<thead>
+<tr>
+<th>服务器IP</th>
+<th>主机名</th>
+<th>myid的值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>192.168.88.100</td>
+<td>node01</td>
+<td>1</td>
+</tr>
+<tr>
+<td>192.168.88.110</td>
+<td>node02</td>
+<td>2</td>
+</tr>
+<tr>
+<td>192.168.88.120</td>
+<td>node03</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<p> <strong>第一步：下载zookeeeper的压缩包，下载网址如下</strong></p>
+<p><a target="_blank" rel="noopener" href="http://archive.apache.org/dist/zookeeper/">http://archive.apache.org/dist/zookeeper/</a></p>
+<p>我们在这个网址下载我们使用的zk版本为3.4.9</p>
+<p>下载完成之后，上传到我们的linux的/export/softwares路径下准备进行安装</p>
+<p><strong>第二步：解压</strong></p>
+<p>解压zookeeper的压缩包到/export/servers路径下去，然后准备进行安装</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /export/software</span><br><span class="line"></span><br><span class="line">tar -zxvf zookeeper-3.4.9.tar.gz -C ../servers/ </span><br></pre></td></tr></table></figure></div>
+<p><strong>第三步：修改配置文件</strong></p>
+<p>第一台机器修改配置文件</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /export/servers/zookeeper-3.4.9/conf/</span><br><span class="line"></span><br><span class="line">cp zoo_sample.cfg zoo.cfg</span><br><span class="line"></span><br><span class="line">mkdir -p /export/servers/zookeeper-3.4.9/zkdatas/</span><br></pre></td></tr></table></figure></div>
+<p><code>vim  zoo.cfg</code></p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dataDir=/export/servers/zookeeper-3.4.9/zkdatas</span><br><span class="line"><span class="meta">#</span><span class="bash"> 保留多少个快照</span></span><br><span class="line">autopurge.snapRetainCount=3</span><br><span class="line"><span class="meta">#</span><span class="bash"> 日志多少小时清理一次</span></span><br><span class="line">autopurge.purgeInterval=1</span><br><span class="line"><span class="meta">#</span><span class="bash"> 集群中服务器地址</span></span><br><span class="line">server.1=node01:2888:3888</span><br><span class="line">server.2=node02:2888:3888</span><br><span class="line">server.3=node03:2888:3888</span><br></pre></td></tr></table></figure></div>
+<p><strong>第四步：添加myid配置</strong></p>
+<p>在第一台机器的</p>
+<p>/export/servers/zookeeper-3.4.9/zkdatas /这个路径下创建一个文件，文件名为myid ,文件内容为1</p>
+<p><code>echo 1 &gt; /export/servers/zookeeper-3.4.9/zkdatas/myid</code> </p>
+<p><strong>第五步：安装包分发并修改myid的值</strong></p>
+<p>安装包分发到其他机器</p>
+<p>第一台机器上面执行以下两个命令</p>
+<p><code>scp -r  /export/servers/zookeeper-3.4.9/ node02:/export/servers/</code></p>
+<p><code>scp -r  /export/servers/zookeeper-3.4.9/ node03:/export/servers/</code></p>
+<p>第二台机器上修改myid的值为2</p>
+<p><code>echo 2 &gt; /export/servers/zookeeper-3.4.9/zkdatas/myid</code></p>
+<p>第三台机器上修改myid的值为3</p>
+<p><code>echo 3 &gt; /export/servers/zookeeper-3.4.9/zkdatas/myid</code></p>
+<p><strong>第六步</strong>：三台机器启动zookeeper服务</p>
+<p>三台机器启动zookeeper服务</p>
+<p>这个命令三台机器都要执行</p>
+<p><code>/export/servers/zookeeper-3.4.9/bin/zkServer.sh start</code></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124151457.png" alt="image-20210124151457880"></p>
+<p>查看启动状态</p>
+<p><code>/export/servers/zookeeper-3.4.9/bin/zkServer.sh  status</code></p>
+<hr>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124151557.png" alt="image-20210124151557362"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124151628.png" alt="image-20210124151628620"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124151640.png" alt="image-20210124151640079"></p>
+<h2 id="7-Znode-的特点"><a href="#7-Znode-的特点" class="headerlink" title="7.Znode 的特点"></a>7.Znode 的特点</h2><ul>
+<li>文件系统的核心是 <code>Znode</code></li>
+<li>如果想要选取一个 <code>Znode</code>, 需要使用路径的形式, 例如 <code>/test1/test11</code></li>
+<li>Znode 本身并不是文件, 也不是文件夹, Znode 因为具有一个类似于 Name 的路径, 所以可以从逻辑上实现一个树状文件系统</li>
+<li>ZK 保证 Znode 访问的原子性, 不会出现部分 ZK 节点更新成功, 部分 ZK 节点更新失败的问题</li>
+<li><code>Znode</code> 中数据是有大小限制的, 最大只能为<code>1M</code></li>
+<li><code>Znode</code>是由三个部分构成<ul>
+<li><code>stat</code>: 状态, Znode的权限信息, 版本等</li>
+<li><code>data</code>: 数据, 每个Znode都是可以携带数据的, 无论是否有子节点</li>
+<li><code>children</code>: 子节点列表</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-Znode-的类型"><a href="#8-Znode-的类型" class="headerlink" title="8.Znode 的类型"></a>8.Znode 的类型</h2><p> <strong>8.1</strong> Znode 有两种，分别为<strong>临时节点</strong>和<strong>永久节点</strong>。节点的类型在创建时即被确定，并且不能改变。</p>
+<ul>
+<li><a href="">临时节点</a>：该节点的生命周期依赖于创建它们的会话。一旦会话结束，临时 节点将被自动删除，当然可以也可以手动删除。临时节点不允许拥有子节点。</li>
+<li><a href="">永久节点</a>：该节点的生命周期不依赖于会话，并且只有在客户端显示执行删除操作的时候，他们才能被删除。</li>
+</ul>
+<p><strong>8.2</strong> Znode 还有一个序列化的特性，如果创建的时候指定的话，该 Znode 的名字后面会自动追加一个不断增加的序列号。序列号对于此节点的父节点来说是唯一的，这样便会记录每个子节点创建的先后顺序。它的格式为“%10d”(10 位数字，没有数值的数位用 0 补充，例如“0000000001”)。</p>
+<p><strong>8.3</strong> 这样便会存在四种类型的 Znode 节点，分别对应：</p>
+<ul>
+<li> PERSISTENT：永久节点</li>
+<li> EPHEMERAL：临时节点</li>
+<li> PERSISTENT_SEQUENTIAL：永久节点、序列化</li>
+<li> EPHEMERAL_SEQUENTIAL：临时节点、序列化</li>
+</ul>
+<p><strong>8.4</strong> 每个<code>Znode</code>有两大特性, 可以构成四种不同类型的<code>Znode</code></p>
+<ul>
+<li><p>持久性</p>
+<ul>
+<li><code>持久</code> 客户端断开时, 不会删除持有的Znode</li>
+<li><code>临时</code> 客户端断开时, 删除所有持有的Znode, <strong>临时Znode不允许有子Znode</strong></li>
+</ul>
+</li>
+<li><p>顺序性</p>
+<ul>
+<li><code>有序</code> 创建的Znode有先后顺序, 顺序就是在后面追加一个序列号, 序列号是由父节点管理的自增</li>
+<li><code>无序</code> 创建的Znode没有先后顺序</li>
+</ul>
+</li>
+<li><p><code>Znode</code>的属性</p>
+<ul>
+<li><code>dataVersion</code> 数据版本, 每次当<code>Znode</code>中的数据发生变化的时候, <code>dataVersion</code>都会自增一下</li>
+<li><code>cversion</code> 节点版本, 每次当<code>Znode</code>的节点发生变化的时候, <code>cversion</code>都会自增</li>
+<li><code>aclVersion</code> <code>ACL(Access Control List)</code>的版本号, 当<code>Znode</code>的权限信息发生变化的时候aclVersion会自增</li>
+<li><code>zxid</code> 事务ID</li>
+<li><code>ctime</code> 创建时间</li>
+<li><code>mtime</code> 最近一次更新的时间</li>
+<li><code>ephemeralOwner</code> 如果<code>Znode</code>为临时节点, <code>ephemeralOwner</code>表示与该节点关联的<code>SessionId</code></li>
+</ul>
+</li>
+</ul>
+<p>通知机制</p>
+<ul>
+<li>通知类似于数据库中的触发器, 对某个Znode设置 <code>Watcher</code>, 当Znode发生变化的时候, <code>WatchManager</code>会调用对应的<code>Watcher</code></li>
+<li>当Znode发生删除, 修改, 创建, 子节点修改的时候, 对应的<code>Watcher</code>会得到通知</li>
+<li><code>Watcher</code>的特点<ul>
+<li><strong>一次性触发</strong> 一个 <code>Watcher</code> 只会被触发一次, 如果需要继续监听, 则需要再次添加 <code>Watcher</code></li>
+<li>事件封装: <code>Watcher</code> 得到的事件是被封装过的, 包括三个内容 <code>keeperState, eventType, path</code></li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>KeeperState</th>
+<th>EventType</th>
+<th>触发条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>None</td>
+<td>连接成功</td>
+<td></td>
+</tr>
+<tr>
+<td>SyncConnected</td>
+<td>NodeCreated</td>
+<td>Znode被创建</td>
+<td>此时处于连接状态</td>
+</tr>
+<tr>
+<td>SyncConnected</td>
+<td>NodeDeleted</td>
+<td>Znode被删除</td>
+<td>此时处于连接状态</td>
+</tr>
+<tr>
+<td>SyncConnected</td>
+<td>NodeDataChanged</td>
+<td>Znode数据被改变</td>
+<td>此时处于连接状态</td>
+</tr>
+<tr>
+<td>SyncConnected</td>
+<td>NodeChildChanged</td>
+<td>Znode的子Znode数据被改变</td>
+<td>此时处于连接状态</td>
+</tr>
+<tr>
+<td>Disconnected</td>
+<td>None</td>
+<td>客户端和服务端断开连接</td>
+<td>此时客户端和服务器处于断开连接状态</td>
+</tr>
+<tr>
+<td>Expired</td>
+<td>None</td>
+<td>会话超时</td>
+<td>会收到一个SessionExpiredException</td>
+</tr>
+<tr>
+<td>AuthFailed</td>
+<td>None</td>
+<td>权限验证失败</td>
+<td>会收到一个AuthFailedException</td>
+</tr>
+</tbody></table>
+<p>会话</p>
+<ul>
+<li>在ZK中所有的客户端和服务器的交互都是在某一个<code>Session</code>中的, 客户端和服务器创建一个连接的时候同时也会创建一个<code>Session</code></li>
+<li><code>Session</code>会在不同的状态之间进行切换: <code>CONNECTING</code>, <code>CONNECTED</code>, <code>RECONNECTING</code>, <code>RECONNECTED</code>, <code>CLOSED</code></li>
+<li>ZK中的会话两端也需要进行心跳检测, 服务端会检测如果超过超时时间没收到客户端的心跳, 则会关闭连接, 释放资源, 关闭会话</li>
+</ul>
+<h2 id="9-zookeeper的数据模型"><a href="#9-zookeeper的数据模型" class="headerlink" title="9. zookeeper的数据模型"></a>9. zookeeper的数据模型</h2><ul>
+<li>ZooKeeper 的数据模型，在结构上和标准文件系统的非常相似，拥有一个层</li>
+</ul>
+<p>次的命名空间，都是采用<a href="">树形层次结构</a>.</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210124225129.jpg" alt="1561706778917">    </p>
+<ul>
+<li>ZooKeeper 树中的每个节点被称为—个Znode。和文件系统的目录树一样，ZooKeeper 树中的每个节点可以拥有子节点。</li>
+</ul>
+<p>但也有不同之处：</p>
+<ol>
+<li>Znode <a href="">兼具文件和目录两种特点</a>。既像文件一样维护着数据、元信息、ACL、 时间戳等数据结构，又像目录一样可以作为路径标识的一部分，并可以具有 子 Znode。用户对 Znode 具有增、删、改、查等操作（权限允许的情况下）。</li>
+<li>Znode 存<a href="">储数据大小有限制</a>。ZooKeeper 虽然可以关联一些数据，但并没有 被设计为常规的数据库或者大数据存储，相反的是，它用来管理调度数据， 比如分布式应用中的配置文件信息、状态信息、汇集位置等等。这些数据的 共同特性就是它们都是很小的数据，通常以 KB 为大小单位。ZooKeeper 的服 务器和客户端都被设计为严格检查并限制每个 Znode 的数据大小至多 1M，常规使用中应该远小于此值。</li>
+<li>Znode <a href="">通过路径引用</a>，如同 Unix 中的文件路径。<strong>路径必须是绝对的</strong>，因此他 们必须由斜杠字符来开头。除此以外，他们必须是唯一的，也就是说每一个 路径只有一个表示，因此这些路径不能改变。在 ZooKeeper 中，路径由 Unicode 字符串组成，并且有一些限制。字符串”/zookeeper”用以保存管理 信息，比如关键配额信息。</li>
+<li>每个 Znode 由 3 部分组成:<ul>
+<li><a href="">stat：</a>此为状态信息, 描述该 Znode 的版本, 权限等信息</li>
+<li><a href="">data：</a>与该 Znode 关联的数据</li>
+<li><a href="">children</a>：该 Znode 下的子节点</li>
+</ul>
+</li>
+</ol>
+<h2 id="10-Zookeeper的Shell-客户端操作"><a href="#10-Zookeeper的Shell-客户端操作" class="headerlink" title="10.Zookeeper的Shell 客户端操作"></a>10.Zookeeper的Shell 客户端操作</h2><h3 id="10-1-登录Zookeeper客户端"><a href="#10-1-登录Zookeeper客户端" class="headerlink" title="10.1 登录Zookeeper客户端"></a>10.1 登录Zookeeper客户端</h3><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin&#x2F;zkCli.sh  -server node01:2181</span><br></pre></td></tr></table></figure></div>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224420.png" alt="image-20210129224413524"></p>
+<h3 id="10-2-Zookeeper客户端操作命令"><a href="#10-2-Zookeeper客户端操作命令" class="headerlink" title="10.2 Zookeeper客户端操作命令"></a>10.2 Zookeeper客户端操作命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>create [-s] [-e] path data acl</code></td>
+<td>创建Znode</td>
+<td>-s 指定是顺序节点<br>-e 指定是临时节点</td>
+</tr>
+<tr>
+<td><code>ls path [watch]</code></td>
+<td>列出Path下所有子Znode</td>
+<td></td>
+</tr>
+<tr>
+<td><code>get path [watch]</code></td>
+<td>获取Path对应的Znode的数据和属性</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ls2 path [watch]</code></td>
+<td>查看Path下所有子Znode以及子Znode的属性</td>
+<td></td>
+</tr>
+<tr>
+<td><code>set path data [version]</code></td>
+<td>更新节点</td>
+<td>version 数据版本</td>
+</tr>
+<tr>
+<td><code>delete path [version]</code></td>
+<td>删除节点, 如果要删除的节点有子Znode则无法删除</td>
+<td>version 数据版本</td>
+</tr>
+<tr>
+<td><code>rmr path</code></td>
+<td>删除节点, 如果有子Znode则递归删除</td>
+<td></td>
+</tr>
+<tr>
+<td>`setquota -n</td>
+<td>-b val path`</td>
+<td>修改Znode配额</td>
+</tr>
+<tr>
+<td><code>history</code></td>
+<td>列出历史记录</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="10-3-操作实例"><a href="#10-3-操作实例" class="headerlink" title="10.3 操作实例"></a>10.3 操作实例</h3><blockquote>
+<p><a href="">列出Path下的所有Znode</a></p>
+</blockquote>
+<p>   <code>ls  /</code></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224503.png" alt="image-20210129224503077"></p>
+<blockquote>
+<p><a href="">创建永久节点</a></p>
+</blockquote>
+<p>   <code>create /hello world</code></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224546.png" alt="image-20210129224545954"></p>
+<blockquote>
+<p><a href="">创建临时节点：</a></p>
+</blockquote>
+<p>​     <code>create -e /abc 123</code></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224610.png" alt="image-20210129224610143"></p>
+<blockquote>
+<p><a href="">创建永久序列化节点：</a></p>
+</blockquote>
+<p>   <code>create -s /zhangsan boy</code></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224642.png" alt="image-20210129224642828"></p>
+<blockquote>
+<p><a href="">创建临时序列化节点：</a></p>
+</blockquote>
+<p>   <code>create -e -s /lisi boy</code></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224716.png" alt="image-20210129224716156"></p>
+<blockquote>
+<p><a href="">修改节点数据</a></p>
+</blockquote>
+<p>  <code>set /hello zookeeper</code></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224805.png" alt="image-20210129224805618"></p>
+<blockquote>
+<p><a href="">删除节点, 如果要删除的节点有子Znode则无法删除</a></p>
+</blockquote>
+<p>   <code>delete /hello</code></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224834.png" alt="image-20210129224834856"></p>
+<blockquote>
+<p><a href="">删除节点, 如果有子Znode则递归删除</a></p>
+</blockquote>
+<p>  <code>rmr /abc</code></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224900.png" alt="image-20210129224900815"></p>
+<blockquote>
+<p><a href="">列出历史记录</a></p>
+</blockquote>
+<p>  <code>histroy</code></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224916.png" alt="image-20210129224916334"></p>
+<blockquote>
+<p><a href="">退出</a></p>
+</blockquote>
+<p><code>quit</code></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129225114.png" alt="image-20210129225114708"></p>
+<h3 id="10-4-节点属性"><a href="#10-4-节点属性" class="headerlink" title="10.4 节点属性"></a>10.4 节点属性</h3><p>每个 znode 都包含了一系列的属性，通过命令 get，可以获得节点的属性。</p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129224946.png" alt="image-20210129224946311"></p>
+<p><a href="">dataVersion</a>：数据版本号，每次对节点进行 set 操作，dataVersion 的值都会增加 1（即使设置的是相同的数据），可有效避免了数据更新时出现的先后顺序问题。</p>
+<p><a href="">cversion</a> ：子节点的版本号。当 znode 的子节点有变化时，cversion 的值就会增加 1。</p>
+<p> <a href="">aclVersion</a> ：ACL 的版本号。</p>
+<p> <a href="">cZxid</a> ：Znode 创建的事务 id。</p>
+<p><a href="">mZxid</a>    ：Znode 被修改的事务 id，即每次对 znode 的修改都会更新 mZxid。</p>
+<ul>
+<li>对于 zk 来说，每次的变化都会产生一个唯一的事务 id，zxid（ZooKeeper Transaction Id）。通过 zxid，可以确定更新操作的先后顺序。例如，如果 zxid1</li>
+<li>小于 zxid2，说明 zxid1 操作先于 zxid2 发生，zxid 对于整个 zk 都是唯一的，</li>
+</ul>
+<p><a href="">ctime</a>：节点创建时的时间戳.</p>
+<p><a href="">mtime</a>：节点最新一次更新发生时的时间戳.</p>
+<p><a href="">ephemeralOwner</a>:如果该节点为临时节点, ephemeralOwner 值表示与该节点绑定的 session id. 如果不  是,ephemeralOwner 值为 0.</p>
+<h3 id="10-5-Zookeeper的watch机制"><a href="#10-5-Zookeeper的watch机制" class="headerlink" title="10.5 Zookeeper的watch机制"></a>10.5 Zookeeper的watch机制</h3><ul>
+<li>通知类似于数据库中的触发器, 对某个Znode设置 <code>Watcher</code>, 当Znode发生变化的时候, <code>WatchManager</code>会调用对应的<code>Watcher</code></li>
+<li>当Znode发生删除, 修改, 创建, 子节点修改的时候, 对应的<code>Watcher</code>会得到通知</li>
+<li><code>Watcher</code>的特点<ul>
+<li><strong>一次性触发</strong> 一个 <code>Watcher</code> 只会被触发一次, 如果需要继续监听, 则需要再次添加 <code>Watcher</code></li>
+<li>事件封装: <code>Watcher</code> 得到的事件是被封装过的, 包括三个内容 <code>keeperState, eventType, path</code></li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>KeeperState</th>
+<th>EventType</th>
+<th>触发条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>None</td>
+<td>连接成功</td>
+<td></td>
+</tr>
+<tr>
+<td>SyncConnected</td>
+<td>NodeCreated</td>
+<td>Znode被创建</td>
+<td>此时处于连接状态</td>
+</tr>
+<tr>
+<td>SyncConnected</td>
+<td>NodeDeleted</td>
+<td>Znode被删除</td>
+<td>此时处于连接状态</td>
+</tr>
+<tr>
+<td>SyncConnected</td>
+<td>NodeDataChanged</td>
+<td>Znode数据被改变</td>
+<td>此时处于连接状态</td>
+</tr>
+<tr>
+<td>SyncConnected</td>
+<td>NodeChildChanged</td>
+<td>Znode的子Znode数据被改变</td>
+<td>此时处于连接状态</td>
+</tr>
+<tr>
+<td>Disconnected</td>
+<td>None</td>
+<td>客户端和服务端断开连接</td>
+<td>此时客户端和服务器处于断开连接状态</td>
+</tr>
+<tr>
+<td>Expired</td>
+<td>None</td>
+<td>会话超时</td>
+<td>会收到一个SessionExpiredExceptio</td>
+</tr>
+<tr>
+<td>AuthFailed</td>
+<td>None</td>
+<td>权限验证失败</td>
+<td>会收到一个AuthFailedException</td>
+</tr>
+</tbody></table>
+<h2 id="11-zookeeper的JavaAPI操作"><a href="#11-zookeeper的JavaAPI操作" class="headerlink" title="11: zookeeper的JavaAPI操作"></a>11: zookeeper的JavaAPI操作</h2><pre><code> 这里操作Zookeeper的JavaAPI使用的是一套zookeeper客户端框架 Curator ，解决了很多Zookeeper客户端非常底层的细节开发工作 。
+</code></pre>
+<p>Curator包含了几个包：</p>
+<ul>
+<li><p> <a href="">curator-framework</a>：对zookeeper的底层api的一些封装</p>
+</li>
+<li><p><a href="">curator-recipes</a>：封装了一些高级特性，如：Cache事件监听、选举、分布式锁、分布式计数器等</p>
+<p>Maven依赖(使用curator的版本：2.12.0，对应Zookeeper的版本为：3.4.x，如果跨版本会有兼容性问题，很有可能导致节点操作失败)：</p>
+</li>
+</ul>
+<h3 id="11-1、创建java工程，导入jar包"><a href="#11-1、创建java工程，导入jar包" class="headerlink" title="11.1、创建java工程，导入jar包"></a>11.1、创建java工程，导入jar包</h3><p>创建maven  java工程，导入jar包</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="XML"><figure class="iseeu highlight /xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- &lt;repositories&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      &lt;repository&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        &lt;id&gt;cloudera&lt;/id&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        &lt;url&gt;https://repository.cloudera.com/artifactory/cloudera-repos/&lt;/url&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">      &lt;/repository&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    &lt;/repositories&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-framework<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-recipes<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.google.collections<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>google-collections<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-simple<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.25<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="comment">&lt;!-- java编译插件 --&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">              <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">              <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">              <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">              <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                  <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                  <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                  <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line"></span><br><span class="line">              <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129225718.png" alt="1611932218455"></p>
+<h3 id="11-2-节点的操作"><a href="#11-2-节点的操作" class="headerlink" title="11.2 节点的操作"></a>11.2 节点的操作</h3><p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129225625.png" alt="1611932102369"></p>
+<h5 id="创建永久节点"><a href="#创建永久节点" class="headerlink" title="创建永久节点"></a><code>创建永久节点</code></h5><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createNode</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">   RetryPolicy retryPolicy = <span class="keyword">new</span>  ExponentialBackoffRetry(<span class="number">1000</span>, <span class="number">1</span>);</span><br><span class="line">   <span class="comment">//获取客户端对象</span></span><br><span class="line">   CuratorFramework client =     CuratorFrameworkFactory.newClient(<span class="string">&quot;192.168.174.100:2181,192.168.174.110:2181,192.168.174.120:2181&quot;</span>, <span class="number">1000</span>, <span class="number">1000</span>, retryPolicy);</span><br><span class="line">    </span><br><span class="line">  <span class="comment">//调用start开启客户端操作</span></span><br><span class="line">  client.start();</span><br><span class="line">    </span><br><span class="line">  <span class="comment">//通过create来进行创建节点，并且需要指定节点类型</span></span><br><span class="line">  client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(<span class="string">&quot;/hello3/world&quot;</span>);</span><br><span class="line"></span><br><span class="line"> client.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230115.png" alt="1611932462183"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230141.png" alt="image-20210129230141602"></p>
+<h5 id="创建临时节点"><a href="#创建临时节点" class="headerlink" title="创建临时节点"></a><code>创建临时节点</code></h5><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createNode2</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">	RetryPolicy retryPolicy = <span class="keyword">new</span>  ExponentialBackoffRetry(<span class="number">3000</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  CuratorFramework client = CuratorFrameworkFactory.newClient(<span class="string">&quot;node01:2181,node02:2181,node03:2181&quot;</span>, <span class="number">3000</span>, <span class="number">3000</span>, retryPolicy);</span><br><span class="line"></span><br><span class="line">client.start();</span><br><span class="line"></span><br><span class="line">client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(<span class="string">&quot;/hello5/world&quot;</span>);</span><br><span class="line"></span><br><span class="line">Thread.sleep(<span class="number">5000</span>);</span><br><span class="line"></span><br><span class="line">client.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230337.png" alt="1611932597856"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230435.png" alt="image-20210129230435315"></p>
+<h5 id="修改节点数据"><a href="#修改节点数据" class="headerlink" title="修改节点数据"></a><code>修改节点数据</code></h5><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	 * 节点下面添加数据与修改是类似的，一个节点下面会有一个数据，新的数据会覆盖旧的数据</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">nodeData</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">		RetryPolicy retryPolicy = <span class="keyword">new</span>  ExponentialBackoffRetry(<span class="number">3000</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">		CuratorFramework client = CuratorFrameworkFactory.newClient(<span class="string">&quot;node01:2181,node02:2181,node03:2181&quot;</span>, <span class="number">3000</span>, <span class="number">3000</span>, retryPolicy);</span><br><span class="line"></span><br><span class="line">		client.start();</span><br><span class="line"></span><br><span class="line">		client.setData().forPath(<span class="string">&quot;/hello5&quot;</span>, <span class="string">&quot;hello7&quot;</span>.getBytes());</span><br><span class="line"></span><br><span class="line">		client.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230528.png" alt="1611932713773"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230556.png" alt="image-20210129230556663"></p>
+<h5 id="节点数据查询"><a href="#节点数据查询" class="headerlink" title="节点数据查询"></a><code>节点数据查询</code></h5><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> * 数据查询</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateNode</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">	RetryPolicy retryPolicy = <span class="keyword">new</span>  ExponentialBackoffRetry(<span class="number">3000</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	CuratorFramework client = CuratorFrameworkFactory.newClient(<span class="string">&quot;node01:2181,node02:2181,node03:2181&quot;</span>, <span class="number">3000</span>, <span class="number">3000</span>, retryPolicy);</span><br><span class="line"></span><br><span class="line">	client.start();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">byte</span>[] forPath = client.getData().forPath(<span class="string">&quot;/hello5&quot;</span>);</span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="keyword">new</span> String(forPath));</span><br><span class="line"></span><br><span class="line">	client.close();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129230649.png" alt="1611932798637"></p>
+<h5 id="节点watch机制"><a href="#节点watch机制" class="headerlink" title="节点watch机制"></a><code>节点watch机制</code></h5><div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> * zookeeper的watch机制</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">watchNode</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">	RetryPolicy policy = <span class="keyword">new</span> ExponentialBackoffRetry(<span class="number">3000</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">	CuratorFramework client = CuratorFrameworkFactory.newClient(<span class="string">&quot;node01:2181,node02:2181,node03:2181&quot;</span>, policy);</span><br><span class="line"></span><br><span class="line">	client.start();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ExecutorService pool = Executors.newCachedThreadPool();  </span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置节点的cache  </span></span><br><span class="line"></span><br><span class="line">        TreeCache treeCache = <span class="keyword">new</span> TreeCache(client, <span class="string">&quot;/hello5&quot;</span>);  </span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置监听器和处理过程  </span></span><br><span class="line"></span><br><span class="line">        treeCache.getListenable().addListener(<span class="keyword">new</span> TreeCacheListener() &#123;  </span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span>  </span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">childEvent</span><span class="params">(CuratorFramework client, TreeCacheEvent event)</span> <span class="keyword">throws</span> Exception </span>&#123;  </span><br><span class="line"></span><br><span class="line">                ChildData data = event.getData();  </span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(data !=<span class="keyword">null</span>)&#123;  </span><br><span class="line"></span><br><span class="line">                    <span class="keyword">switch</span> (event.getType()) &#123; </span><br><span class="line"></span><br><span class="line">                    <span class="keyword">case</span> NODE_ADDED:  </span><br><span class="line"></span><br><span class="line">                        System.out.println(<span class="string">&quot;NODE_ADDED : &quot;</span>+ data.getPath() +<span class="string">&quot;  数据:&quot;</span>+ <span class="keyword">new</span> String(data.getData()));  </span><br><span class="line"></span><br><span class="line">                        <span class="keyword">break</span>;  </span><br><span class="line"></span><br><span class="line">                    <span class="keyword">case</span> NODE_REMOVED:  </span><br><span class="line"></span><br><span class="line">                        System.out.println(<span class="string">&quot;NODE_REMOVED : &quot;</span>+ data.getPath() +<span class="string">&quot;  数据:&quot;</span>+ <span class="keyword">new</span> String(data.getData()));  </span><br><span class="line"></span><br><span class="line">                        <span class="keyword">break</span>;  </span><br><span class="line"></span><br><span class="line">                    <span class="keyword">case</span> NODE_UPDATED:  </span><br><span class="line"></span><br><span class="line">                        System.out.println(<span class="string">&quot;NODE_UPDATED : &quot;</span>+ data.getPath() +<span class="string">&quot;  数据:&quot;</span>+ <span class="keyword">new</span> String(data.getData()));  </span><br><span class="line"></span><br><span class="line">                        <span class="keyword">break</span>;  </span><br><span class="line"></span><br><span class="line">                          </span><br><span class="line"></span><br><span class="line">                    <span class="keyword">default</span>:  </span><br><span class="line"></span><br><span class="line">                        <span class="keyword">break</span>;  </span><br><span class="line"></span><br><span class="line">                    &#125;  </span><br><span class="line"></span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line"></span><br><span class="line">                    System.out.println( <span class="string">&quot;data is null : &quot;</span>+ event.getType());  </span><br><span class="line"></span><br><span class="line">                &#125;  </span><br><span class="line"></span><br><span class="line">            &#125;  </span><br><span class="line"></span><br><span class="line">        &#125;);  </span><br><span class="line"></span><br><span class="line">        <span class="comment">//开始监听  </span></span><br><span class="line"></span><br><span class="line">        treeCache.start();  </span><br><span class="line"></span><br><span class="line">        Thread.sleep(<span class="number">50000000</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129231201.png" alt="1611933093404"></p>
+<p><img src="https://gitee.com/studentliuchang/biogImg/raw/master/img/20210129231217.png" alt="image-20210129231217294"></p>
+<h5 id="创建zookeeper工具类"><a href="#创建zookeeper工具类" class="headerlink" title="创建zookeeper工具类"></a><code>创建zookeeper工具类</code></h5><p>通过上面的代码可以发现，以上代码全都需要获取一个客户端，以及重试策略。于是Java病犯了，抽取！！！</p>
+<p>1.ZookeeperUtil工具类：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.curator.framework.CuratorFramework;</span><br><span class="line"><span class="keyword">import</span> org.apache.curator.framework.CuratorFrameworkFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.curator.retry.ExponentialBackoffRetry;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZookeeperUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String connectString;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String sessionTimeoutMs;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String connectionTimeoutMs;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String baseSleepTimeMs;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String maxRetries;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Properties properties=<span class="keyword">new</span> Properties();</span><br><span class="line">            properties.load(ZookeeperUtil.class.getClassLoader().getResourceAsStream(<span class="string">&quot;zookeeper.properties&quot;</span>));</span><br><span class="line">            connectString = properties.getProperty(<span class="string">&quot;connectString&quot;</span>);</span><br><span class="line">            sessionTimeoutMs = properties.getProperty(<span class="string">&quot;sessionTimeoutMs&quot;</span>);</span><br><span class="line">            connectionTimeoutMs = properties.getProperty(<span class="string">&quot;connectionTimeoutMs&quot;</span>);</span><br><span class="line">            baseSleepTimeMs = properties.getProperty(<span class="string">&quot;baseSleepTimeMs&quot;</span>);</span><br><span class="line">            maxRetries = properties.getProperty(<span class="string">&quot;maxRetries&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CuratorFramework <span class="title">getClient</span><span class="params">()</span></span>&#123;</span><br><span class="line">        CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(connectString, Integer.parseInt(sessionTimeoutMs), Integer.parseInt(connectionTimeoutMs), <span class="keyword">new</span> ExponentialBackoffRetry(Integer.parseInt(baseSleepTimeMs),Integer.parseInt(maxRetries)));</span><br><span class="line">        <span class="keyword">return</span> curatorFramework;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>2.zookeeper.properties</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PROPERTIES"><figure class="iseeu highlight /properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">connectString</span>=<span class="string">192.168.88.100:2181,192.168.88.110:2181,192.168.88.120:2181</span></span><br><span class="line"><span class="attr">sessionTimeoutMs</span>=<span class="string">8000</span></span><br><span class="line"><span class="attr">connectionTimeoutMs</span>=<span class="string">8000</span></span><br><span class="line"><span class="attr">baseSleepTimeMs</span>=<span class="string">1000</span></span><br><span class="line"><span class="attr">maxRetries</span>=<span class="string">1</span></span><br></pre></td></tr></table></figure></div>
+<p>3.更改上述代码</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.curator.RetryPolicy;</span><br><span class="line"><span class="keyword">import</span> org.apache.curator.framework.CuratorFramework;</span><br><span class="line"><span class="keyword">import</span> org.apache.curator.framework.CuratorFrameworkFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.curator.framework.recipes.cache.ChildData;</span><br><span class="line"><span class="keyword">import</span> org.apache.curator.framework.recipes.cache.TreeCache;</span><br><span class="line"><span class="keyword">import</span> org.apache.curator.framework.recipes.cache.TreeCacheEvent;</span><br><span class="line"><span class="keyword">import</span> org.apache.curator.framework.recipes.cache.TreeCacheListener;</span><br><span class="line"><span class="keyword">import</span> org.apache.curator.retry.ExponentialBackoffRetry;</span><br><span class="line"><span class="keyword">import</span> org.apache.zookeeper.CreateMode;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">zookeeperTest</span> </span>&#123;</span><br><span class="line">    <span class="comment">//创建zookeeper节点</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createZNode</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//1:定制一个重试策略</span></span><br><span class="line">        <span class="comment">//参数：int baseSleepTimeMs(重试的间隔时间), int maxRetries(重试的最大次数)</span></span><br><span class="line">        RetryPolicy retryPolicy = <span class="keyword">new</span> ExponentialBackoffRetry(<span class="number">1000</span>,<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//2:获取一个客户端对象</span></span><br><span class="line">        <span class="comment">/*参数：第一个：服务器列表：要连接的zookeeper服务器列表</span></span><br><span class="line"><span class="comment">            第二个：会话的超时时间</span></span><br><span class="line"><span class="comment">            第三个：连接超时时间</span></span><br><span class="line"><span class="comment">            第四个：超时策略</span></span><br><span class="line"><span class="comment">        * */</span></span><br><span class="line">        String connectString=<span class="string">&quot;192.168.88.100:2181,192.168.88.110:2181,192.168.88.120:2181&quot;</span>;</span><br><span class="line">        CuratorFramework curatorFramework = CuratorFrameworkFactory.newClient(connectString, <span class="number">8000</span>, <span class="number">8000</span>, retryPolicy);</span><br><span class="line">        <span class="comment">//3.开启服务端</span></span><br><span class="line">        curatorFramework.start();</span><br><span class="line">        <span class="comment">//4.创建节点</span></span><br><span class="line">        curatorFramework.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(<span class="string">&quot;/Hi&quot;</span>,<span class="string">&quot;Java&quot;</span>.getBytes());</span><br><span class="line">        <span class="comment">//5.关闭节点</span></span><br><span class="line">        curatorFramework.close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//创建临时节点</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createEPHEMERAL</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        CuratorFramework client = ZookeeperUtil.getClient();</span><br><span class="line">        client.start();</span><br><span class="line">        client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(<span class="string">&quot;/Hello2&quot;</span>,<span class="string">&quot;临时节点&quot;</span>.getBytes());</span><br><span class="line">        Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//修改节点数据</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setZNode</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        CuratorFramework client = ZookeeperUtil.getClient();</span><br><span class="line">        client.start();</span><br><span class="line">        client.setData().forPath(<span class="string">&quot;/Hi&quot;</span>,<span class="string">&quot;Hello Java&quot;</span>.getBytes());</span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取节点数据</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getZNode</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        CuratorFramework client = ZookeeperUtil.getClient();</span><br><span class="line">        client.start();</span><br><span class="line">        <span class="keyword">byte</span>[] bytes = client.getData().forPath(<span class="string">&quot;/Hi&quot;</span>);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> String(bytes));</span><br><span class="line">        client.close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//Zookeeper的Watch机制</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">watchZNode</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        CuratorFramework client = ZookeeperUtil.getClient();</span><br><span class="line">        client.start();</span><br><span class="line">        TreeCache treeCache = <span class="keyword">new</span> TreeCache(client,<span class="string">&quot;/Hello&quot;</span>);</span><br><span class="line">        treeCache.getListenable().addListener(<span class="keyword">new</span> TreeCacheListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">childEvent</span><span class="params">(CuratorFramework curatorFramework, TreeCacheEvent treeCacheEvent)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                ChildData data = treeCacheEvent.getData();</span><br><span class="line">                <span class="keyword">if</span> (data!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                    <span class="keyword">switch</span> (treeCacheEvent.getType())&#123;</span><br><span class="line">                        <span class="keyword">case</span> NODE_ADDED:</span><br><span class="line">                            System.out.println(<span class="string">&quot;有新增节点---&gt;&quot;</span>+data.getPath()+<span class="string">&quot;，新增数据为:&quot;</span>+<span class="keyword">new</span> String(data.getData()));</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">case</span> NODE_UPDATED:</span><br><span class="line">                            System.out.println(<span class="string">&quot;有节点被更新--&gt;&quot;</span>+data.getPath()+<span class="string">&quot;，更新数据为:&quot;</span>+<span class="keyword">new</span> String(data.getData()));</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">case</span> NODE_REMOVED:</span><br><span class="line">                            System.out.println(<span class="string">&quot;有节点被删除--&gt;&quot;</span>+data.getPath()+<span class="string">&quot;，删除数据为:&quot;</span>+<span class="keyword">new</span> String(data.getData()));</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">                    System.out.println( <span class="string">&quot;data is null : &quot;</span>+ treeCacheEvent.getType());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//开始监听</span></span><br><span class="line">        treeCache.start();</span><br><span class="line">        Thread.sleep(<span class="number">50000000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+
+        
+
+      
+    </div>
+
+      <!-- 相关文章推荐 -->
+     
+          
+
+  <div class="popular-posts-header">
+    <i class="fa fa-graduation-cap"></i>
+    相关文章
+  </div>
+
+ <details>
+   <summary>点击查看</summary>
+     <ul class="popular-posts">
+     
+       <li class="popular-posts-item">
+         
+         
+         <div class="popular-posts-title"><a href="\2021-01-08-Big-data之ETL\" rel="bookmark">Big data-ETL-Kettle</a></div>
+         
+       </li>
+     
+       <li class="popular-posts-item">
+         
+         
+         <div class="popular-posts-title"><a href="\Hadoop-HDFS\" rel="bookmark">Hadoop核心HDFS</a></div>
+         
+       </li>
+     
+     </ul>
+ </details>
+
+
+
+     
+
+    
+    
+    
+
+    <div>
+          
+            
+
+          
+    </div>
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div class="read-over">-------------------本文结束 <i class="fa fa-paw"></i> 感谢您的阅读-------------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+      <div>
+        <div class="share_reward">
+  <div>坚持原创技术分享，感谢您的支持和鼓励！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Student-Chang
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://studentliuchang.gitee.io/Zookeeper/" title="Zookeeper">https://studentliuchang.gitee.io/Zookeeper/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" rel="tag"> <i class="fa fa-tag"></i> 大数据技术学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Hadoop-HDFS/" rel="prev" title="Hadoop核心HDFS">
+                <i class="fa fa-chevron-left"></i> Hadoop核心HDFS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021-01-08-Big-data%E4%B9%8BETL/" rel="next" title="Big data-ETL-Kettle">
+                Big data-ETL-Kettle <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+         <div
+  data-weibo-title="分享到微博"
+  data-qq-title="分享到QQ"
+  data-douban-title="分享到豆瓣"
+  class="social-share"
+  class="share-component"
+
+
+
+  data-disabled="qzone,google+,linkedin"
+  data-description="Share.js - 一键分享到微博，QQ空间，腾讯微博，人人，豆瓣...">
+   分享到：
+</div>
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/OIP.jpg"
+                alt="" />
+              </a>
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a rel="external nofollow" href="https://github.com/Student-chang/Student-chang.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a rel="external nofollow" href="773395726@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+            <!--
+            <div id="music163player">
+                <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1336790004&auto=1&height=66"></iframe>
+            </div>
+            -->
+
+          
+          
+
+          
+          
+
+          <!--近期文章版块 began-->
+          
+              <div class="links-of-blogroll motion-element links-of-blogroll-block">
+                <div class="links-of-blogroll-title">
+                  <i class="fa fa-history fa-" aria-hidden="true"></i>
+                  近期文章
+                </div>
+                <ul class="links-of-blogroll-list">
+                  
+                  
+                    <li class='my-links-of-blogroll-li'>
+                      <a href="/Hadoop-HDFS/" title="Hadoop核心HDFS" target="_blank">Hadoop核心HDFS</a>
+                    </li>
+                  
+                    <li class='my-links-of-blogroll-li'>
+                      <a href="/Zookeeper/" title="Zookeeper" target="_blank">Zookeeper</a>
+                    </li>
+                  
+                    <li class='my-links-of-blogroll-li'>
+                      <a href="/2021-01-08-Big-data%E4%B9%8BETL/" title="Big data-ETL-Kettle" target="_blank">Big data-ETL-Kettle</a>
+                    </li>
+                  
+                    <li class='my-links-of-blogroll-li'>
+                      <a href="/%E5%BA%94%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%A4%A7%E4%BD%9C%E4%B8%9A/" title="复习" target="_blank">复习</a>
+                    </li>
+                  
+                    <li class='my-links-of-blogroll-li'>
+                      <a href="/JavaWeb%E5%A4%A7%E4%BD%9C%E4%B8%9A%EF%BC%9A%E7%89%B9%E6%95%88%E9%A1%B5%E9%9D%A2/" title="复习" target="_blank">复习</a>
+                    </li>
+                  
+                </ul>
+              </div>
+          
+          <!--近期文章版块 end-->
+
+          
+              <!-- canvas粒子时钟 -->
+              <!-- canvas粒子时钟 https://www.cnblogs.com/xiaohuochai/p/6368039.html
+  https://www.html5tricks.com/html5-canvas-dance-time.html
+ -->
+<div id="">
+  <canvas id="canvas" style="width:60%;">
+</div>
+<script async>
+(function(){
+  var WINDOW_WIDTH = 820;
+  		var WINDOW_HEIGHT = 250;
+  		var RADIUS = 7; //球半径
+  		var NUMBER_GAP = 10; //数字之间的间隙
+  		var u=0.65; //碰撞能量损耗系数
+  		var context; //Canvas绘制上下文
+  		var balls = []; //存储彩色的小球
+  		const colors = ["#33B5E5","#0099CC","#AA66CC","#9933CC","#99CC00","#669900","#FFBB33","#FF8800","#FF4444","#CC0000"]; //彩色小球的颜色
+  		var currentNums = []; //屏幕显示的8个字符
+  		var digit =
+                  [
+                      [
+                          [0,0,1,1,1,0,0],
+                          [0,1,1,0,1,1,0],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,0,1,1,0],
+                          [0,0,1,1,1,0,0]
+                      ],//0
+                      [
+                          [0,0,0,1,1,0,0],
+                          [0,1,1,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [1,1,1,1,1,1,1]
+                      ],//1
+                      [
+                          [0,1,1,1,1,1,0],
+                          [1,1,0,0,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,1,1,0,0,0],
+                          [0,1,1,0,0,0,0],
+                          [1,1,0,0,0,0,0],
+                          [1,1,0,0,0,1,1],
+                          [1,1,1,1,1,1,1]
+                      ],//2
+                      [
+                          [1,1,1,1,1,1,1],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,1,1,1,0,0],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,1,1,1,0]
+                      ],//3
+                      [
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,1,1,1,0],
+                          [0,0,1,1,1,1,0],
+                          [0,1,1,0,1,1,0],
+                          [1,1,0,0,1,1,0],
+                          [1,1,1,1,1,1,1],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,1,1,1,1]
+                      ],//4
+                      [
+                          [1,1,1,1,1,1,1],
+                          [1,1,0,0,0,0,0],
+                          [1,1,0,0,0,0,0],
+                          [1,1,1,1,1,1,0],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,1,1,1,0]
+                      ],//5
+                      [
+                          [0,0,0,0,1,1,0],
+                          [0,0,1,1,0,0,0],
+                          [0,1,1,0,0,0,0],
+                          [1,1,0,0,0,0,0],
+                          [1,1,0,1,1,1,0],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,1,1,1,0]
+                      ],//6
+                      [
+                          [1,1,1,1,1,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,0,1,1,0,0],
+                          [0,0,1,1,0,0,0],
+                          [0,0,1,1,0,0,0],
+                          [0,0,1,1,0,0,0],
+                          [0,0,1,1,0,0,0]
+                      ],//7
+                      [
+                          [0,1,1,1,1,1,0],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,1,1,1,0],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,1,1,1,0]
+                      ],//8
+                      [
+                          [0,1,1,1,1,1,0],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [1,1,0,0,0,1,1],
+                          [0,1,1,1,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,0,1,1],
+                          [0,0,0,0,1,1,0],
+                          [0,0,0,1,1,0,0],
+                          [0,1,1,0,0,0,0]
+                      ],//9
+                      [
+                          [0,0,0,0],
+                          [0,0,0,0],
+                          [0,1,1,0],
+                          [0,1,1,0],
+                          [0,0,0,0],
+                          [0,0,0,0],
+                          [0,1,1,0],
+                          [0,1,1,0],
+                          [0,0,0,0],
+                          [0,0,0,0]
+                      ]//:
+                  ];
+
+  		function drawDatetime(cxt){
+  			var nums = [];
+
+  			context.fillStyle="#005eac"
+  			var date = new Date();
+  			var offsetX = 70, offsetY = 30;
+  			var hours = date.getHours();
+  			var num1 = Math.floor(hours/10);
+  			var num2 = hours%10;
+  			nums.push({num: num1});
+  			nums.push({num: num2});
+  			nums.push({num: 10}); //冒号
+  			var minutes = date.getMinutes();
+  			var num1 = Math.floor(minutes/10);
+  			var num2 = minutes%10;
+  			nums.push({num: num1});
+  			nums.push({num: num2});
+  			nums.push({num: 10}); //冒号
+  			var seconds = date.getSeconds();
+  			var num1 = Math.floor(seconds/10);
+  			var num2 = seconds%10;
+  			nums.push({num: num1});
+  			nums.push({num: num2});
+
+  			for(var x = 0;x<nums.length;x++){
+  				nums[x].offsetX = offsetX;
+  				offsetX = drawSingleNumber(offsetX,offsetY, nums[x].num,cxt);
+  				//两个数字连一块，应该间隔一些距离
+  				if(x<nums.length-1){
+  					if((nums[x].num!=10) &&(nums[x+1].num!=10)){
+  						offsetX+=NUMBER_GAP;
+  					}
+  				}
+  			}
+
+  			//说明这是初始化
+  			if(currentNums.length ==0){
+  				currentNums = nums;
+  			}else{
+  				//进行比较
+  				for(var index = 0;index<currentNums.length;index++){
+  					if(currentNums[index].num!=nums[index].num){
+  						//不一样时，添加彩色小球
+  						addBalls(nums[index]);
+  						currentNums[index].num=nums[index].num;
+  					}
+  				}
+  			}
+  			renderBalls(cxt);
+  			updateBalls();
+
+  			return date;
+  		}
+
+  		function addBalls (item) {
+  			var num = item.num;
+  			var numMatrix = digit[num];
+  			for(var y = 0;y<numMatrix.length;y++){
+  				for(var x = 0;x<numMatrix[y].length;x++){
+  					if(numMatrix[y][x]==1){
+  						var ball={
+  							offsetX:item.offsetX+RADIUS+RADIUS*2*x,
+  							offsetY:30+RADIUS+RADIUS*2*y,
+  							color:colors[Math.floor(Math.random()*colors.length)],
+  							g:1.5+Math.random(),
+  							vx:Math.pow(-1, Math.ceil(Math.random()*10))*4+Math.random(),
+  							vy:-5
+  						}
+  						balls.push(ball);
+  					}
+  				}
+  			}
+  		}
+
+  		function renderBalls(cxt){
+  			for(var index = 0;index<balls.length;index++){
+  				cxt.beginPath();
+  				cxt.fillStyle=balls[index].color;
+  				cxt.arc(balls[index].offsetX, balls[index].offsetY, RADIUS, 0, 2*Math.PI);
+  				cxt.fill();
+  			}
+  		}
+
+  		function updateBalls () {
+  			var i =0;
+  			for(var index = 0;index<balls.length;index++){
+  				var ball = balls[index];
+  				ball.offsetX += ball.vx;
+  				ball.offsetY += ball.vy;
+  				ball.vy+=ball.g;
+  				if(ball.offsetY > (WINDOW_HEIGHT-RADIUS)){
+  					ball.offsetY= WINDOW_HEIGHT-RADIUS;
+  					ball.vy=-ball.vy*u;
+  				}
+  				if(ball.offsetX>RADIUS&&ball.offsetX<(WINDOW_WIDTH-RADIUS)){
+
+  					balls[i]=balls[index];
+  					i++;
+  				}
+  			}
+  			//去除出边界的球
+  			for(;i<balls.length;i++){
+  				balls.pop();
+  			}
+  		}
+  		function drawSingleNumber(offsetX, offsetY, num, cxt){
+  			var numMatrix = digit[num];
+  			for(var y = 0;y<numMatrix.length;y++){
+  				for(var x = 0;x<numMatrix[y].length;x++){
+  					if(numMatrix[y][x]==1){
+  						cxt.beginPath();
+  						cxt.arc(offsetX+RADIUS+RADIUS*2*x,offsetY+RADIUS+RADIUS*2*y,RADIUS,0,2*Math.PI);
+  						cxt.fill();
+  					}
+  				}
+  			}
+  			cxt.beginPath();
+  			offsetX += numMatrix[0].length*RADIUS*2;
+  			return offsetX;
+  		}
+
+  		var canvas = document.getElementById("canvas");
+  		canvas.width=WINDOW_WIDTH;
+  		canvas.height=WINDOW_HEIGHT;
+  		context = canvas.getContext("2d");
+
+  		//记录当前绘制的时刻
+  		var currentDate = new Date();
+
+  		setInterval(function(){
+  			//清空整个Canvas，重新绘制内容
+  			context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+  			drawDatetime(context);
+  		}, 50)
+})();
+</script>
+
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Zookeeper"><span class="nav-number">1.</span> <span class="nav-text">Zookeeper</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Zookeeper-%E7%9A%84%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1 Zookeeper 的概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Zookeeper%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">2:Zookeeper的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Zookeeper%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.3.</span> <span class="nav-text">3.Zookeeper的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%95%B0%E6%8D%AE%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 数据发布&#x2F;订阅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%91%BD%E5%90%8D%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 命名服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%B0%83-%E9%80%9A%E7%9F%A5"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 分布式协调&#x2F;通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4分布式锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-%E5%88%86%E5%B8%83%E5%BC%8F%E9%98%9F%E5%88%97"><span class="nav-number">1.3.5.</span> <span class="nav-text">3.5 分布式队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Zookeeper%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="nav-number">1.4.</span> <span class="nav-text">4.Zookeeper的架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Zookeeper%E7%9A%84%E9%80%89%E4%B8%BE%E6%9C%BA%E5%88%B6"><span class="nav-number">1.5.</span> <span class="nav-text">5:Zookeeper的选举机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%AF%E5%8A%A8%E6%97%B6%E6%9C%9F%E7%9A%84Leader%E9%80%89%E4%B8%BE"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1. 服务器启动时期的Leader选举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9C%9F%E7%9A%84Leader%E9%80%89%E4%B8%BE"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2.服务器运行时期的Leader选举</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Zookeeper%E5%AE%89%E8%A3%85"><span class="nav-number">1.6.</span> <span class="nav-text">6: Zookeeper安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Znode-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">1.7.</span> <span class="nav-text">7.Znode 的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Znode-%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.8.</span> <span class="nav-text">8.Znode 的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-zookeeper%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.9.</span> <span class="nav-text">9. zookeeper的数据模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Zookeeper%E7%9A%84Shell-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%93%8D%E4%BD%9C"><span class="nav-number">1.10.</span> <span class="nav-text">10.Zookeeper的Shell 客户端操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-%E7%99%BB%E5%BD%95Zookeeper%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">1.10.1.</span> <span class="nav-text">10.1 登录Zookeeper客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-Zookeeper%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-number">1.10.2.</span> <span class="nav-text">10.2 Zookeeper客户端操作命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-%E6%93%8D%E4%BD%9C%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.10.3.</span> <span class="nav-text">10.3 操作实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-4-%E8%8A%82%E7%82%B9%E5%B1%9E%E6%80%A7"><span class="nav-number">1.10.4.</span> <span class="nav-text">10.4 节点属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-5-Zookeeper%E7%9A%84watch%E6%9C%BA%E5%88%B6"><span class="nav-number">1.10.5.</span> <span class="nav-text">10.5 Zookeeper的watch机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-zookeeper%E7%9A%84JavaAPI%E6%93%8D%E4%BD%9C"><span class="nav-number">1.11.</span> <span class="nav-text">11: zookeeper的JavaAPI操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1%E3%80%81%E5%88%9B%E5%BB%BAjava%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%AF%BC%E5%85%A5jar%E5%8C%85"><span class="nav-number">1.11.1.</span> <span class="nav-text">11.1、创建java工程，导入jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-%E8%8A%82%E7%82%B9%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">1.11.2.</span> <span class="nav-text">11.2 节点的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%B0%B8%E4%B9%85%E8%8A%82%E7%82%B9"><span class="nav-number">1.11.2.0.1.</span> <span class="nav-text">创建永久节点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%B4%E6%97%B6%E8%8A%82%E7%82%B9"><span class="nav-number">1.11.2.0.2.</span> <span class="nav-text">创建临时节点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E8%8A%82%E7%82%B9%E6%95%B0%E6%8D%AE"><span class="nav-number">1.11.2.0.3.</span> <span class="nav-text">修改节点数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.11.2.0.4.</span> <span class="nav-text">节点数据查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%8A%82%E7%82%B9watch%E6%9C%BA%E5%88%B6"><span class="nav-number">1.11.2.0.5.</span> <span class="nav-text">节点watch机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAzookeeper%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">1.11.2.0.6.</span> <span class="nav-text">创建zookeeper工具类</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+      
+
+      <!-- 标签云 -->
+      <!--
+      
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+      <h3 class="widget-title">Tag Cloud</h3>
+      <div id="myCanvasContainer" class="widget tagcloud">
+          <canvas width="250" height="250" id="resCanvas" style="width=100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-%E5%9F%BA%E7%A1%80/" rel="tag">C++基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%A4%8D%E4%B9%A0/" rel="tag">Java复习</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%AD%A6%E4%B9%A0/" rel="tag">Java学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode%E7%BB%83%E4%B9%A0/" rel="tag">LeetCode练习</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%A4%8D%E4%B9%A0/" rel="tag">Linux复习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%8D%E4%B9%A0/" rel="tag">复习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" rel="tag">大数据技术学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" rel="tag">工具使用</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" rel="tag">框架学习</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AF%9B%E6%A6%82%E5%A4%8D%E4%B9%A0/" rel="tag">毛概复习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E7%BB%83%E4%B9%A0/" rel="tag">算法练习</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" rel="tag">计算机网络复习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a><span class="tag-list-count">3</span></li></ul>
+          </canvas>
+      </div>
+      </div>
+      
+      -->
+      <!-- 标签云 -->
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+       <i class="fa fa-heartbeat"></i>
+  </span>
+  
+    <span class="author" itemprop="copyrightHolder"> &nbsp;Student-Chang</span>
+  
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Site words total count"></span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="subscribe-box">
+    <div class="subscribe-menu">
+      <div class="subscribe-hover">
+        <div class="subscribe-description">微信扫一扫，关注公众号</div>
+      </div>
+    </div>
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <!--
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+   
+
+  
+  
+    
+      <span class="site-uv">
+        
+        我的第 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 位朋友，
+      </span>
+    
+
+    
+      <span class="site-pv">
+        历经 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次回眸才与你相遇
+        <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      </span>
+    
+  
+
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery@2.1.3/dist/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/velocity-animate@1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/velocity-animate@1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script id="ribbon" type="text/javascript" size="60" alpha="0.1"  zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="/js/src/Valine.min.js"></script>
+
+  <!-- https://deserts.io/diy-a-comment-system/ -->
+  <script type="text/javascript">
+    new Valine({
+        lang: 'zh-cn',
+        admin_email: 'xxxxxxxxx@qq.com', //博主邮箱
+        el: '#comments' ,
+        appId: 'sHYSv9H4MTrkhqSHuSV7qMJy-gzGzoHsz',
+        appKey: 'LPQzlNsO4apryXI3SJcYBnQm',
+        emoticon_url: 'https://cdn.jsdelivr.net/gh/leafjame/cdn/emoji',
+       // emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+        emoticon_list: ["大佬.gif","点赞.gif","尴尬.gif","鼓掌.gif","笑哭.gif","害羞.gif","黑人问号.gif","坏笑.gif","惊吓.gif","可爱.gif","抠鼻子.gif","流汗.gif","色.gif","吐血.gif","无奈.gif","huaji.png","liuhanhuaji.png","mojinghuaji.png","coshuaji.png","shounuehuaji.png","jizhi.png","doge.png","chigua.png","motion_1016.png","motion_1012.png","motion_1017.png","f_hufen.png","f_geili.png","f_jiong.png","f_meng.png","f_shenma.png","f_v5.png","c_onef.png","c_onem.png","c_fivem.png","c_oney.png","c_teny.png","c_oy.png","1f60a.png","1f60b.png","1f60d.png","1f60e.png","1f61a.png","1f62d.png","1f601.png","1f602.png","1f605.png","1f606.png","1f607.png","1f618.png","1f630.png","1f631.png","1f632.png","1f633.png","1f63e.png","1f63f.png","1f638.png","1f639.png","zhayanjian.gif","ciya.gif","xieyanxiao.gif","huaixiao.gif","xiaoku.gif","leiben.gif","penxue.gif","hanxiao.gif","baiyan.gif","cahan.gif","fadai.gif","haixiu.gif","haqian.gif","ku.gif","liuhan.gif","OK.gif","qiang.gif","woshou.gif","baoquan.gif","qiudale.gif","se.gif","yinxian.gif","yun.gif","zaijian.gif"],
+        placeholder: '&#x270d;&nbsp;写评论',
+  });
+
+  <!--点击邮件中的链接跳转至相应评论-->
+  if(window.location.hash){
+      var checkExist = setInterval(function() {
+         if ($(window.location.hash).length) {
+            $('html, body').animate({scrollTop: $(window.location.hash).offset().top-90}, 1000);
+            clearInterval(checkExist);
+         }
+      }, 100);
+   }
+
+  </script>
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+    <script>  function addCount(Counter){var $visitors=$('.leancloud_visitors');var url=$visitors.attr('id').trim();var title=$visitors.attr('data-flag-title').trim();Counter('get','/classes/Counter',{where:JSON.stringify({url})}).done(function({results}){if(results.length>0){var counter=results[0]; var $element=$(document.getElementById(url));$element.find('.leancloud-visitors-count').text(counter.time+1);Counter('put','/classes/Counter/'+counter.objectId,JSON.stringify({time:{'__op':'Increment','amount':1}})) .fail(function({responseJSON}){console.log('Failed to save Visitor num, with error message: '+responseJSON.error);})}else{ Counter('post','/classes/Counter',JSON.stringify({title:title,url:url,time:1})).done(function(){var $element=$(document.getElementById(url));$element.find('.leancloud-visitors-count').text(1);}).fail(function(){console.log('Failed to create');});}}).fail(function({responseJSON}){console.log('LeanCloud Counter Error: '+responseJSON.code+' '+responseJSON.error);});}$(function(){$.get('https://app-router.leancloud.cn/2/route?appId='+'sHYSv9H4MTrkhqSHuSV7qMJy-gzGzoHsz').done(function({api_server}){var Counter=function(method,url,data){return $.ajax({method:method,url:'https://'+api_server+'/1.1'+url,headers:{'X-LC-Id':'sHYSv9H4MTrkhqSHuSV7qMJy-gzGzoHsz','X-LC-Key':'LPQzlNsO4apryXI3SJcYBnQm','Content-Type':'application/json',},data:data});};  const localhost=/http:\/\/(localhost|127.0.0.1|0.0.0.0)/;if(localhost.test(document.URL))return;addCount(Counter);});});</script>
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <!-- Tidio 在线联系功能、鼠标点击特效、页面反馈...-->
+  
+
+
+  
+    <script async src="/js/cursor/love.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/src/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = true;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+
+
+  <script async language="javascript">
+
+    var div = document.createElement("div");
+    //插入到自定义的theme-info或者copyright之后
+    var copyright = document.querySelector(".theme-info2") || document.querySelector(".copyright");
+
+    function show_run_time(){
+        window.setTimeout("show_run_time()", 1000);
+      // BirthDay=new Date("08/07/2019 20:00:00");
+        BirthDay=new Date("06/13/2019 20:00:00");
+        today=new Date();
+        timeold=(today.getTime()-BirthDay.getTime());
+        sectimeold=timeold/1000
+        secondsold=Math.floor(sectimeold);
+        msPerDay=24*60*60*1000
+        e_daysold=timeold/msPerDay
+        daysold=Math.floor(e_daysold);
+        e_hrsold=(e_daysold-daysold)*24;
+        hrsold=setzero(Math.floor(e_hrsold));
+        e_minsold=(e_hrsold-hrsold)*60;
+        minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+        seconds=setzero(Math.floor((e_minsold-minsold)*60));
+
+        // 使用zh-Hans.yml的文字替换
+        div.innerHTML = "我已在此等候你 " + "<span style='color: #1890ff'> " + daysold + " </span> 天 <span style='color: #1890ff'>" + hrsold + " </span>时 <span style='color: #1890ff'>" + minsold + " </span>分 <span style='color: #1890ff'>" + seconds + " </span>秒 ";
+
+        document.querySelector(".footer-inner").insertBefore(div, copyright.nextSibling);
+
+    }
+    function setzero(i){
+        if (i<10)
+        {i="0" + i};
+        return i;
+    }
+
+    show_run_time();
+
+  </script>
+
+
+
+
+<!-- 旋转魔方 -->
+
+   
+      
+<style>
+  /*最外层容器样式*/
+  .wrap {
+    width: 0px;
+    height: 0px;
+    /*margin: 80px;*/
+    /*position: relative;*/
+    position: fixed;
+    bottom: 120px;
+    right: 80px;
+    z-index: 999;
+  }
+
+  /*包裹所有容器样式*/
+  .cube {
+    width: 0px;
+    height: 0px;
+    margin: 0 auto;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    transform: rotateX(-30deg) rotateY(-80deg);
+    animation: rotate linear 10s infinite;
+  }
+
+  @-webkit-keyframes rotate {
+    from {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+    to {
+      transform: rotateX(360deg) rotateY(360deg);
+    }
+  }
+
+  .cube div {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    opacity: 0.8;
+    transition: all .4s;
+  }
+
+  /*定义所有图片样式*/
+  .pic {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cube .out_front {
+    transform: rotateY(0deg) translateZ(25px);
+  }
+
+  .cube .out_back {
+    transform: translateZ(-25px) rotateY(180deg);
+  }
+
+  .cube .out_left {
+    transform: rotateY(-90deg) translateZ(25px);
+  }
+
+  .cube .out_right {
+    transform: rotateY(90deg) translateZ(25px);
+  }
+
+  .cube .out_top {
+    transform: rotateX(90deg) translateZ(25px);
+  }
+
+  .cube .out_bottom {
+    transform: rotateX(-90deg) translateZ(25px);
+  }
+
+  /*定义小正方体样式*/
+  .cube span {
+    display: block;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+  }
+
+  .cube .in_pic {
+    width: 25px;
+    height:25px;
+  }
+
+  .cube .in_front {
+    transform: rotateY(0deg) translateZ(12px);
+  }
+
+  .cube .in_back {
+    transform: translateZ(-12px) rotateY(180deg);
+  }
+
+  .cube .in_left {
+    transform: rotateY(-90deg) translateZ(12px);
+  }
+
+  .cube .in_right {
+    transform: rotateY(90deg) translateZ(12px);
+  }
+
+  .cube .in_top {
+    transform: rotateX(90deg) translateZ(12px);
+  }
+
+  .cube .in_bottom {
+    transform: rotateX(-90deg) translateZ(12px);
+  }
+
+  /*鼠标移入后样式*/
+  .cube:hover .out_front {
+    transform: rotateY(0deg) translateZ(50px);
+  }
+
+  .cube:hover .out_back {
+    transform: translateZ(-50px) rotateY(180deg);
+  }
+
+  .cube:hover .out_left {
+    transform: rotateY(-90deg) translateZ(50px);
+  }
+
+  .cube:hover .out_right {
+    transform: rotateY(90deg) translateZ(50px);
+  }
+
+  .cube:hover .out_top {
+    transform: rotateX(90deg) translateZ(50px);
+  }
+
+  .cube:hover .out_bottom {
+    transform: rotateX(-90deg) translateZ(50px);
+  }
+</style>
+
+<div class="wrap">
+
+		<!--包裹所有元素的容器-->
+		<div class="cube">
+			<!--前面图片 -->
+			<div class="out_front">
+			  <a onclick="back2top()">
+				  <img src="https://s2.ax1x.com/2019/10/14/KpEBJx.th.jpg" class="pic" />
+				</a>
+			</div>
+			<!--后面图片 -->
+			<div class="out_back">
+				<a onclick="back2top()">
+          <img src="https://s2.ax1x.com/2019/10/14/KpEBJx.th.jpg" class="pic" />
+        </a>
+			</div>
+			<!--左面图片 -->
+			<div class="out_left">
+        <a onclick="back2top()">
+				  <img src="https://s2.ax1x.com/2019/10/14/KpEBJx.th.jpg" class="pic" />
+				</a>
+			</div>
+			<!--右面图片 -->
+			<div class="out_right">
+				<a onclick="back2top()">
+          <img src="https://s2.ax1x.com/2019/10/14/KpEBJx.th.jpg" class="pic" />
+        </a>
+			</div>
+			<!--上面图片 -->
+			<div class="out_top">
+				<a onclick="back2top()">
+          <img src="https://s2.ax1x.com/2019/10/14/KpEBJx.th.jpg" class="pic" />
+        </a>
+			</div>
+			<!--下面图片 -->
+			<div class="out_bottom">
+				<a onclick="back2top()">
+          <img src="https://s2.ax1x.com/2019/10/14/KpEBJx.th.jpg" class="pic" />
+        </a>
+			</div>
+
+			<!--小正方体 -->
+			<span class="in_front">
+				<img src="https://s2.ax1x.com/2019/10/14/KptCPf.th.jpg" class="in_pic" />
+			</span>
+			<span class="in_back">
+			     <img src="https://s2.ax1x.com/2019/10/14/KptCPf.th.jpg" class="in_pic" />
+			</span>
+			<span class="in_left">
+				<img src="https://s2.ax1x.com/2019/10/14/KptCPf.th.jpg" class="in_pic" />
+			</span>
+			<span class="in_right">
+				<img src="https://s2.ax1x.com/2019/10/14/KptCPf.th.jpg" class="in_pic" />
+			</span>
+			<span class="in_top">
+				<img src="https://s2.ax1x.com/2019/10/14/KptCPf.th.jpg" class="in_pic" />
+			</span>
+			<span class="in_bottom">
+				<img src="https://s2.ax1x.com/2019/10/14/KptCPf.th.jpg" class="in_pic" />
+			</span>
+		</div>
+
+</div>
+
+<script>
+  function back2top(){
+    $('html, body').animate({scrollTop: 0}, 500);
+  }
+</script>
+
+   
+
+
+<!-- Console 输出第三方个性化字体 -->
+
+  <script async type="text/javascript" src="/figlet/fetch.min.js"></script>
+  <script type="text/javascript" src="/figlet/figlet.js"></script>
+  <script type="text/javascript">
+
+      figlet.defaults({fontPath: "/figlet/fonts"});
+      figlet("Welcome To Leaface", "Big Money-ne", function(err, text) {
+          if (err) {
+              console.log("something went wrong...");
+              console.dir(err);
+              return;
+          }
+          console.log(text);
+      });
+  </script>
+
+
+  <!-- Console 输出自定义字体 -->
+  
+    <script async type="text/javascript">
+        var text = "Welcome To Leaface";
+        var date = '2021-01-30';
+        console.log("%c " + text, "font-size:100px;color:white;border-radius:20px;height:200px; background:-webkit-linear-gradient(yellow,orange,red,green,blue,purple);text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);");
+        console.info('\n' + ' %c Leafae Site %c https://www.liaofuzhan.com ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
+        console.info('\n' + ' %c Leafae QQ %c 793458585 ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
+        console.info('\n' + ' %c Leafae Wechat %c leaface ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
+       // console.log("%c Time: " + date, "font-size:100px;white:"+fcolor+";border-radius:20px;height:200px; background:-webkit-linear-gradient(yellow,orange,red,green,blue,purple);text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);  background-image: linear-gradient(to right, orangered, orange, gold, lightgreen, cyan, dodgerblue, mediumpurple, hotpink, orangered);");
+       // console.log("%c .", "padding:300px 600px;line-height:10px;background:url(https://s2.ax1x.com/2019/10/17/KkoAJJ.md.png) no-repeat;");
+    </script>
+  
+
+
+  <!-- 看板娘 -->
+  
+
+  
+
+  
+
+  <!-- 代码块复制功能 -->
+  <script async type="text/javascript" src="/js/src/clipboard.min.js"></script>
+  <script async type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+  <!--share.js-->
+  <link async rel="stylesheet" href="/sharejs/css/share.min.css">
+  <script async src="/sharejs/js/social-share.min.js"></script>
+
+  <!-- 模仿知乎卡片样式链接、崩溃欺骗特效 -->
+  <script async type="text/javascript" src="/js/src/linkcard.js"></script>
+
+  <!--崩溃欺骗 放在js文件最后-->
+  <!--
+  <script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+  -->
+  <style>
+#selectionCopyright {
+    position: absolute;
+    display: none;
+    background: rgba(244,67,54,.7);
+    color: #fff;
+    border-radius: 6px;
+    box-shadow: none;
+    border: none;
+    font-size: 14px;
+}
+#selectionCopyright a{
+    color:#fff;
+    border-color: #fff;
+}
+#selectionCopyright::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 8px 6px 0;
+    border-color: transparent rgba(244,67,54,.7) transparent transparent;
+    position: absolute;
+    left: -8px;
+    top:50%;
+    transform:translateY(-50%);
+}
+</style>
+<button id="selectionCopyright" disabled="disabled">本文发表于[<a href="https://studentliuchang.gitee.io/">AsiFadeAway.com</a>]分享请注明来源！</button>
+<script>
+window.onload = function() {
+    function selectText() {
+        if (document.selection) { //IE浏览器下
+            return document.selection.createRange().text; //返回选中的文字
+        } else { //非IE浏览器下
+            return window.getSelection().toString(); //返回选中的文字
+        }
+    }
+    var content = document.getElementsByTagName("body")[0];
+    var scTip = document.getElementById('selectionCopyright');
+
+    content.onmouseup = function(ev) { //设定一个onmouseup事件
+        var ev = ev || window.event;
+        var left = ev.clientX;//获取鼠标相对浏览器可视区域左上角水平距离距离
+        var top = ev.clientY;//获取鼠标相对浏览器可视区域左上角垂直距离距离
+        var xScroll = Math.max(document.body.scrollLeft, document.documentElement.scrollLeft);//获取文档水平滚动距离
+        var yScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);//获取文档垂直滚动距离
+        if (selectText().length > 0) {
+            setTimeout(function() { //设定一个定时器
+                scTip.style.display = 'inline-block';
+                scTip.style.left = left + xScroll + 15 + 'px';//鼠标当前x值
+                scTip.style.top = top + yScroll - 15 + 'px';//鼠标当前y值
+            }, 100);
+        } else {
+            scTip.style.display = 'none';
+        }
+    };
+
+    content.onclick = function(ev) {
+        var ev = ev || window.event;
+        ev.cancelBubble = true;
+    };
+    document.onclick = function() {
+        scTip.style.display = 'none';
+    };
+};
+</script>
+ 
+
+</body>
+</html>
